@@ -1,0 +1,17 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib"
+                    xmlns:local="clr-namespace:Fasetto.Word">
+
+    <system:Double x:Key="FontSizeRegular" >20</system:Double>
+    <system:Double x:Key="FontSizeSmall">14</system:Double>
+    <system:Double x:Key="FontSizeLarge">30</system:Double>
+    
+    <Style TargetType="{x:Type TextBlock}" 
+           x:Key="HeaderText">
+        <Setter Property="Foreground" Value="{StaticResource ForegroundMainBrush}"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="0 8"/>
+    </Style>
+</ResourceDictionary>

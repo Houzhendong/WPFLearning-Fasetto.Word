@@ -1,0 +1,110 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Fasetto.Word">
+    <ResourceDictionary.MergedDictionaries>
+        <!-- order is important-->
+        <ResourceDictionary Source="Colors.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style TargetType="{x:Type Button}" x:Key="Hoverless">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}">
+                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--System Icon Button-->
+    <Style TargetType="{x:Type Button}" x:Key="SystemIconButton" BasedOn="{StaticResource Hoverless}">
+        <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
+    </Style>
+
+    <!--Window Control Button-->
+    <Style TargetType="{x:Type Button}" x:Key="WindowControlButton">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
+        <Setter Property="Padding" Value="8"/>
+        <Setter Property="Foreground" Value="{StaticResource ForegroundMainBrush}"/>
+        <Setter Property="FontFamily" Value="../Images/Icon/#iconfont"/>
+        <Setter Property="Width" Value="40"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}">
+                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource BackgroundLightBrush}"/>
+            </Trigger>
+        </Style.Triggers>
+
+    </Style>
+
+    <Style x:Key="WindowCloseButton" TargetType="{x:Type Button}" BasedOn="{StaticResource WindowControlButton}">
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="Red"/>
+                <Setter Property="Foreground" Value="{StaticResource ForegroundLightBrush}"/>
+            </Trigger>
+        </Style.Triggers>  
+    </Style>
+
+    <Style TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="{StaticResource WordOrangeBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource ForegroundLightBrush}"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="FontSize" Value="{StaticResource FontSizeLarge}"/>
+        <Setter Property="Padding" Value="50 10"/>
+        <Setter Property="Margin" Value="0 10"/>
+            <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}"
+                            CornerRadius="10"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"
+                            SnapsToDevicePixels="True">
+                        <ContentPresenter x:Name="contextPresenter"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          Content="{TemplateBinding Content}"
+                                          ContentStringFormat="{TemplateBinding ContentStringFormat}"/>
+
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Button.IsDefaulted" Value="True">
+                            <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" TargetName="border" Value="#ffbee6fd"/>
+                            <Setter Property="BorderBrush" TargetName="border" Value="#ff3c7fb1"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" TargetName="border" Value="#ffc4e5f6"/>
+                            <Setter Property="BorderBrush" TargetName="border" Value="#ff2c628b"/>
+                        </Trigger>
+                        <Trigger Property="ToggleButton.IsChecked" Value="True">
+                            <Setter Property="Background" TargetName="border" Value="#ffbcddee"/>
+                            <Setter Property="BorderBrush" TargetName="border" Value="#ff245a83"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Background" TargetName="border" Value="#fff4f4f4"/>
+                            <Setter Property="BorderBrush" TargetName="border" Value="#ffadb2b5"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
