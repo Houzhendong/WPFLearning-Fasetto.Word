@@ -9,7 +9,7 @@
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
         Icon="Images/Logo/icon.png"
-        Title="Welcom,Friend!" Height="450" Width="800">
+        Title="Welcom,Friend!" Height="900" Width="800">
 
     <Window.Resources>
         <Style TargetType="{x:Type local:MainWindow}">
