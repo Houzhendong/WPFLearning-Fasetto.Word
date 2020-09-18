@@ -2,7 +2,7 @@
 using System.Reflection;
 using System.Windows.Input;
 
-namespace Fasetto.Word.ViewModel
+namespace Fasetto.Word
 {
     public class RelayCommand : ICommand
     {

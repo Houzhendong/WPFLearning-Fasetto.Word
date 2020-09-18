@@ -2,7 +2,7 @@
 using System.Runtime.Remoting.Channels;
 using PropertyChanged;
 
-namespace Fasetto.Word.ViewModel
+namespace Fasetto.Word
 {
     [AddINotifyPropertyChangedInterface]
     public class BaseViewModel : INotifyPropertyChanged

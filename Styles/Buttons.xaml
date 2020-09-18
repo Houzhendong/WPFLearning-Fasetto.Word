@@ -109,6 +109,7 @@
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="FontSize" Value="{StaticResource FontSizeRegular}"/>
         <Setter Property="Margin" Value="0 10"/>
+        <Setter Property="Padding" Value="50 10"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
@@ -116,7 +117,7 @@
                             CornerRadius="10"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             Background="{TemplateBinding Background}"
-                            Padding="50 10"
+                            Padding="{TemplateBinding Padding}"
                             SnapsToDevicePixels="True">
                         <TextBlock Text="{TemplateBinding Content}"
                                    Focusable="False"

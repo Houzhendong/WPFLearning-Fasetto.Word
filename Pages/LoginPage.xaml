@@ -39,7 +39,7 @@
                                  Tag="Email"/>
 
                         <!--Password-->
-                        <TextBox Style="{StaticResource TextBoxPlaceholder}"
+                        <PasswordBox Style="{StaticResource PasswordBoxPlaceholder}" 
                                  Tag="Password"/>
 
                         <!--Next button-->

@@ -7,7 +7,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 
-namespace Fasetto.Word.ViewModel
+namespace Fasetto.Word
 {
     public class WindowViewModel : BaseViewModel
     {
