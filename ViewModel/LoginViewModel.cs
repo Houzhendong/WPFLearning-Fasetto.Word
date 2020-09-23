@@ -21,6 +21,12 @@ namespace Fasetto.Word
         /// the users password
         /// </summary>
         public SecureString Password { get; set; }
+
+        /// <summary>
+        /// a flag indicating if the login command is running
+        /// </summary>
+        public bool LoginIsRunning { get; set; }
+
         #endregion
 
         #region Commands
@@ -43,9 +49,13 @@ namespace Fasetto.Word
         /// <returns></returns>
         public async Task Login(object paramter)
         {
-            await Task.Delay(500);
+            await RunCommand(() => this.LoginIsRunning, async () =>
+             {
+                 await Task.Delay(500);
 
-            var pass = (paramter as IHavePassword).SecurePassword.Unsecure();
+                 var email = this.Email;
+                 var pass = (paramter as IHavePassword).SecurePassword.Unsecure();
+             });
         }
     }
 
