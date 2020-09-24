@@ -53,7 +53,7 @@ namespace Fasetto.Word
 
         public GridLength TitleHeightGridLength { get { return new GridLength(TitleHeight + OuterMerginSize); } }
 
-        public ApplicationPage CurrentPage { get; set; } = ApplicationPage.LoginPage;
+        public ApplicationPage CurrentPage { get; set; } = ApplicationPage.Chat;
 
         public ICommand MinimizeCommand { get; set; }
         public ICommand MaximizeCommand { get; set; }

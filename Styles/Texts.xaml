@@ -3,8 +3,9 @@
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
                     xmlns:local="clr-namespace:Fasetto.Word">
 
-    <system:Double x:Key="FontSizeRegular" >20</system:Double>
     <system:Double x:Key="FontSizeSmall">14</system:Double>
+    <system:Double x:Key="FontSizeAverage">18</system:Double>
+    <system:Double x:Key="FontSizeRegular">20</system:Double>
     <system:Double x:Key="FontSizeLarge">30</system:Double>
     
     <Style TargetType="{x:Type TextBlock}" 
