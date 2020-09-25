@@ -28,8 +28,11 @@ namespace Fasetto.Word
         /// </summary>
         public string ProfilePictureRGB { get; set; }
 
-        public ChatListItemViewModel()
-        {
-        }
+        public bool NewContentAvailable { get; set; }
+
+        /// <summary>
+        /// true if this item is Selected
+        /// </summary>
+        public bool IsSelected { get; set; }
     }
 }

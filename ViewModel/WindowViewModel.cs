@@ -60,6 +60,8 @@ namespace Fasetto.Word
         public ICommand CloseCommand { get; set; }
         public ICommand MenuCommand { get; set; }
 
+        public ICommand MouseMoveCommand { get; set; }
+
         public WindowViewModel(Window win)
         {
             window = win;
@@ -78,7 +80,28 @@ namespace Fasetto.Word
             CloseCommand = new RelayCommand(() => { window.Close(); });
             MenuCommand = new RelayCommand(() => { SystemCommands.ShowSystemMenu(window, GetMousePosition()); });
 
+            MouseMoveCommand = new RelayParameterizedCommand((paramter) => MouseMove((Point)paramter));
+
             var resizerHelper = new WindowResizer(window);
+        }
+
+        private string positionString;
+        public string PositionString
+        {
+            get
+            {
+                return positionString;
+            }
+            set 
+            {
+                positionString = value;
+                OnPropertyChanged(nameof(PositionString));
+            }
+        }
+
+        private void MouseMove(Point paramter)
+        {
+            PositionString = $"X : {(int)paramter.X} , Y : {(int)paramter.Y}";
         }
 
         /// <summary>

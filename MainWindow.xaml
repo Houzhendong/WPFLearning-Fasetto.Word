@@ -112,11 +112,19 @@
                 <ColumnDefinition Width="5*"/>
             </Grid.ColumnDefinitions>
 
+            <TextBlock Grid.Column="1"
+           FontSize="30"
+           Foreground="White"
+           VerticalAlignment="Center"
+                      HorizontalAlignment="Center"
+                       Text="{Binding PositionString}"/>
             <Frame Grid.Column="1" x:Name="MainFrame" 
+                   local:ElementAttachedProperties.MouseMoveCommand="{Binding MouseMoveCommand}"
                    Content="{Binding CurrentPage, Converter={local:ApplicationPageValueConverter}}"/>
 
             <local:SideMenuControl>
-                <Button Content="Test"/>
+                <local:ChatListControl
+                    DataContext="{x:Static local:ChatListDesignModel.Instance}"/>
             </local:SideMenuControl>
         </Grid>
     </Border>
