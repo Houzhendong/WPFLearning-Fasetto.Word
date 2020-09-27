@@ -1,14 +1,10 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Linq.Expressions;
-using System.Runtime.InteropServices;
-using System.Runtime.Remoting.Channels;
-using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Data;
 using PropertyChanged;
 
-namespace Fasetto.Word
+namespace Fasetto.Word.Core
 {
     [AddINotifyPropertyChangedInterface]
     public class BaseViewModel : INotifyPropertyChanged

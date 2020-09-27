@@ -3,7 +3,7 @@ using System.Security;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace Fasetto.Word
+namespace Fasetto.Word.Core
 {
     /// <summary>
     /// a view model for login screen

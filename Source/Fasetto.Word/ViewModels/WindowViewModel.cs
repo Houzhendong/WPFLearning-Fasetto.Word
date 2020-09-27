@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Fasetto.Word.Core;
 using System.Windows;
 using System.Windows.Input;
-using System.Windows.Media;
 
 namespace Fasetto.Word
 {
@@ -52,8 +47,6 @@ namespace Fasetto.Word
         public int TitleHeight { get; set; } = 26;
 
         public GridLength TitleHeightGridLength { get { return new GridLength(TitleHeight + OuterMerginSize); } }
-
-        public ApplicationPage CurrentPage { get; set; } = ApplicationPage.Chat;
 
         public ICommand MinimizeCommand { get; set; }
         public ICommand MaximizeCommand { get; set; }

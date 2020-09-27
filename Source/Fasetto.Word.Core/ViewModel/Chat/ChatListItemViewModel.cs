@@ -1,7 +1,7 @@
 ﻿
 using System.Drawing;
 
-namespace Fasetto.Word
+namespace Fasetto.Word.Core
 {
     /// <summary>
     /// A ViewModle for each chat list item in the overview chat list

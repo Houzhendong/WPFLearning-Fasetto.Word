@@ -1,7 +1,4 @@
-﻿
-using System.Windows.Navigation;
-
-namespace Fasetto.Word
+﻿namespace Fasetto.Word.Core
 {
     /// <summary>
     /// the design-time data for <see cref="ChatListItemControl"/>

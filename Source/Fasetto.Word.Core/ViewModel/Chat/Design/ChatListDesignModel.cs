@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Fasetto.Word
+namespace Fasetto.Word.Core
 {
     /// <summary>
     /// the design-time data for <see cref="ChatListControl"/>
