@@ -35,11 +35,26 @@ namespace Fasetto.Word
         /// the command to login
         /// </summary>
         public ICommand LoginCommand { get; set; }
+
+        /// <summary>
+        /// the command to register for a new account 
+        /// </summary>
+        public ICommand RegisterCommand { get; set; }
         #endregion
 
         public LoginViewModel()
         {
             LoginCommand = new RelayParameterizedCommand(async (paramter) => await Login(paramter));
+            RegisterCommand = new RelayCommand(async () => await Register());
+        }
+
+        /// <summary>
+        /// the user to the register page
+        /// </summary>
+        /// <returns></returns>
+        private async Task Register()
+        {
+            await Task.Delay(1);
         }
 
         /// <summary>

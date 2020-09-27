@@ -14,5 +14,10 @@
         /// Chat Page
         /// </summary>
         Chat = 1,
+
+        /// <summary>
+        /// Register Page
+        /// </summary>
+        Register = 2,
     }
 }

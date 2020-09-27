@@ -1,5 +1,5 @@
 ﻿<local:BasePage x:TypeArguments="local:LoginViewModel"
-      x:Class="Fasetto.Word.LoginPage"
+      x:Class="Fasetto.Word.RegisterPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -8,7 +8,7 @@
       mc:Ignorable="d" 
       x:Name="Page"
       d:DesignHeight="700" d:DesignWidth="700"
-      Title="LoginPage">
+      Title="Register">
 
     <Border Background="Transparent">
         <!--Main content Scroll-->
@@ -48,15 +48,14 @@
                         <!--Next button-->
                         <Button Content="Login" 
                                 local:IsBusyProperty.Value="{Binding LoginIsRunning}"
-                                Command="{Binding LoginCommand}"
+                                Command="{Binding RegisterCommand}"
                                 CommandParameter="{Binding ElementName=Page}"
                                 HorizontalAlignment="Center"/>
 
                     </StackPanel>
                 </Border>
 
-                <Button Style="{StaticResource TextButton}" 
-                        Content="Create an new account" HorizontalAlignment="Center"/>
+                <Button Style="{StaticResource TextButton}" Content="I already have an account" HorizontalAlignment="Center"/>
 
             </StackPanel>
         </ScrollViewer>
