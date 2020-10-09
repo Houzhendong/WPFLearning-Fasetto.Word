@@ -9,5 +9,7 @@
         ///
         /// </summary>
         public ApplicationPage CurrentPage { get; set; } = ApplicationPage.LoginPage;
+
+        public bool SideMenuVisiable { get; set; } = false;
     }
 }

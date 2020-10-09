@@ -19,7 +19,7 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type local:MainWindow}">
                         <!-- Main window with resizeable outline margin-->
-                        <Border Padding="{Binding OuterMerginSizeThickness}">
+                        <Border Margin="{Binding OuterMerginSizeThickness}">
                             <Grid>
                                 <Border CornerRadius="{Binding WindowCornerRadius}"
                                         Background="{Binding BackgroundLightBrush ,FallbackValue=white}">
@@ -110,21 +110,26 @@
     <Border Background="{StaticResource WordBlueBrush}">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <TextBlock Grid.Column="1"
+            <!--<TextBlock Grid.Column="1"
            FontSize="30"
            Foreground="White"
            VerticalAlignment="Center"
                       HorizontalAlignment="Center"
-                       Text="{Binding PositionString}"/>
+                       Text="{Binding PositionString}"/>-->
             <Frame Grid.Column="1" x:Name="MainFrame" 
                    local:ElementAttachedProperties.MouseMoveCommand="{Binding MouseMoveCommand}"
-                   Content="{Binding ApplicationViewModel.CurrentPage, ElementName=AppWindow, Converter={local:ApplicationPageValueConverter}}"/>
+                   Content="{Binding ApplicationViewModel.CurrentPage,
+                    Source={x:Static local:ViewModelLocator.Instance}, 
+                    Converter={local:ApplicationPageValueConverter}}"/>
 
-            <local:SideMenuControl>
+            <!--Side Menu-->
+            <local:SideMenuControl Width="300"
+                local:AnimateSlideInFromLeftProperty.Value="{Binding ApplicationViewModel.SideMenuVisiable,
+                Source={x:Static local:ViewModelLocator.Instance}}">
                 <local:ChatListControl
                     DataContext="{x:Static core:ChatListDesignModel.Instance}"/>
             </local:SideMenuControl>

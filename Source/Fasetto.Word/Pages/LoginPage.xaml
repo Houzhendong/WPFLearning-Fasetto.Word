@@ -57,6 +57,7 @@
                 </Border>
 
                 <Button Style="{StaticResource TextButton}" 
+                        Command="{Binding RegisterCommand}"
                         Content="Create an new account" HorizontalAlignment="Center"/>
 
             </StackPanel>

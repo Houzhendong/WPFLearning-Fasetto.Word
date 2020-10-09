@@ -62,11 +62,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Animation\PageAnimation.cs" />
+    <Compile Include="Animation\FrameworkElementAnimation.cs" />
     <Compile Include="Animation\StoryBoardHelpers.cs" />
     <Compile Include="AttachedProperties\BaseAttachedProperties.cs" />
     <Compile Include="AttachedProperties\ButtonAttachedProperty.cs" />
     <Compile Include="AttachedProperties\ElementAttachedProperties.cs" />
+    <Compile Include="AttachedProperties\FrameworkElementAnimationAttachedProperties.cs" />
     <Compile Include="AttachedProperties\PasswordProperties.cs" />
     <Compile Include="Controls\Chat\ChatListControl.xaml.cs">
       <DependentUpon>ChatListControl.xaml</DependentUpon>
@@ -87,9 +88,11 @@
     <Compile Include="Pages\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ValueConverters\IoCConverter.cs" />
     <Compile Include="ValueConverters\StringRGBToBrushConverter.cs" />
     <Compile Include="ValueConverters\ApplicationPageValueConverter.cs" />
     <Compile Include="ValueConverters\BaseValueConverter.cs" />
+    <Compile Include="ViewModels\ViewModelLocator.cs" />
     <Compile Include="ViewModels\WindowViewModel.cs" />
     <Compile Include="Window\WindowResizer.cs" />
     <Page Include="Controls\Chat\ChatListControl.xaml">

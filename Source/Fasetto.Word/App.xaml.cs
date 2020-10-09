@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Fasetto.Word.Core;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -15,11 +16,13 @@ namespace Fasetto.Word
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            SplashScreen s = new SplashScreen("/Images/Logo/SplashScreen.png");
-            s.Show(false);
-            s.Close(new TimeSpan(0, 0, 10));
-
             base.OnStartup(e);
+
+            IoC.Setup();
+
+            //show the main window
+            Current.MainWindow = new MainWindow();
+            Current.MainWindow.Show();
         }
     }
 }

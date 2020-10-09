@@ -54,6 +54,10 @@ namespace Fasetto.Word.Core
         /// <returns></returns>
         private async Task Register()
         {
+            IoC.Get<ApplicationViewModel>().SideMenuVisiable ^= true;
+
+            IoC.Get<ApplicationViewModel>().CurrentPage = ApplicationPage.Register;
+
             await Task.Delay(1);
         }
 

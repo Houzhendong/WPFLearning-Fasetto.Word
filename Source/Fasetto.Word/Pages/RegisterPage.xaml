@@ -27,7 +27,7 @@
                     <StackPanel>
 
                         <!--Sign Up header-->
-                        <TextBlock Text="Sign In"
+                        <TextBlock Text="Sign Up"
                                FontSize="{StaticResource FontSizeLarge}"
                                Foreground="{StaticResource WordBlueBrush}"/>
 
@@ -47,7 +47,7 @@
                                  Tag="Password"/>
 
                         <!--Next button-->
-                        <Button Content="Login" 
+                        <Button Content="Register" 
                                 local:IsBusyProperty.Value="{Binding LoginIsRunning}"
                                 Command="{Binding RegisterCommand}"
                                 CommandParameter="{Binding ElementName=Page}"
@@ -56,7 +56,10 @@
                     </StackPanel>
                 </Border>
 
-                <Button Style="{StaticResource TextButton}" Content="I already have an account" HorizontalAlignment="Center"/>
+                <Button Style="{StaticResource TextButton}" 
+                        Command="{Binding RegisterCommand}"
+                        Content="I already have an account" 
+                        HorizontalAlignment="Center"/>
 
             </StackPanel>
         </ScrollViewer>

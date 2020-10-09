@@ -15,7 +15,15 @@ namespace Fasetto.Word
         where PropertyClass : BaseAttachedProperties<PropertyClass,PropertyType>, new ()
     {
 
+        /// <summary>
+        /// fired when the value changes
+        /// </summary>
         public event Action<DependencyObject, DependencyPropertyChangedEventArgs> ValueChanged = (sender, e) => { };
+
+        /// <summary>
+        /// fired when the value changes,event when the value is the same 
+        /// </summary>
+        public event Action<DependencyObject, object> ValueUpdated = (sender, value) => { };
 
         /// <summary>
         /// a singleton instance of our parent class
@@ -23,7 +31,19 @@ namespace Fasetto.Word
         public static PropertyClass Instance { get; set; } = new PropertyClass();
 
         public static readonly DependencyProperty ValueProperty =
-            DependencyProperty.RegisterAttached("Value", typeof(PropertyType), typeof(BaseAttachedProperties<PropertyClass, PropertyType>), new PropertyMetadata(new PropertyChangedCallback(OnValuePropertyChaned)));
+            DependencyProperty.RegisterAttached("Value", 
+                typeof(PropertyType), 
+                typeof(BaseAttachedProperties<PropertyClass, PropertyType>), 
+                new UIPropertyMetadata(default(PropertyType), new PropertyChangedCallback(OnValuePropertyChaned), new CoerceValueCallback(OnValuePropertyupdated)));
+
+        private static object OnValuePropertyupdated(DependencyObject d, object value)
+        {
+            Instance.OnValueUpdated(d, value);
+
+            Instance.ValueUpdated(d, value);
+
+            return value;
+        }
 
         private static void OnValuePropertyChaned(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -37,6 +57,8 @@ namespace Fasetto.Word
         public static void SetValue(DependencyObject d, PropertyType value) => d.SetValue(ValueProperty, value);
 
         public virtual void OnValueChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e) { }
+
+        public virtual void OnValueUpdated(DependencyObject sender, object value) { }
     }
 
 }
