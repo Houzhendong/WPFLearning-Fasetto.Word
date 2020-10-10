@@ -8,8 +8,19 @@
         /// <summary>
         ///
         /// </summary>
-        public ApplicationPage CurrentPage { get; set; } = ApplicationPage.LoginPage;
+        public ApplicationPage CurrentPage { get; private set; } = ApplicationPage.LoginPage;
 
         public bool SideMenuVisiable { get; set; } = false;
+
+        /// <summary>
+        /// navigates to the specified page
+        /// </summary>
+        /// <param name="page"></param>
+        public void GoToPage(ApplicationPage page)
+        {
+            CurrentPage = page;
+
+            SideMenuVisiable = page == ApplicationPage.Chat;
+        }
     }
 }

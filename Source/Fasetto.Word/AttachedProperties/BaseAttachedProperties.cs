@@ -12,7 +12,7 @@ namespace Fasetto.Word
     /// <typeparam name="PropertyClass">the parent class to be the attached property</typeparam>
     /// <typeparam name="PropertyType">the type of this attached property</typeparam>
     public abstract class BaseAttachedProperties<PropertyClass, PropertyType>
-        where PropertyClass : BaseAttachedProperties<PropertyClass,PropertyType>, new ()
+        where PropertyClass :  new ()
     {
 
         /// <summary>
@@ -21,7 +21,7 @@ namespace Fasetto.Word
         public event Action<DependencyObject, DependencyPropertyChangedEventArgs> ValueChanged = (sender, e) => { };
 
         /// <summary>
-        /// fired when the value changes,event when the value is the same 
+        /// fired when the value changes,even when the value is the same 
         /// </summary>
         public event Action<DependencyObject, object> ValueUpdated = (sender, value) => { };
 
@@ -38,18 +38,18 @@ namespace Fasetto.Word
 
         private static object OnValuePropertyupdated(DependencyObject d, object value)
         {
-            Instance.OnValueUpdated(d, value);
+            (Instance as BaseAttachedProperties<PropertyClass,PropertyType>).OnValueUpdated(d, value);
 
-            Instance.ValueUpdated(d, value);
+            (Instance as BaseAttachedProperties<PropertyClass,PropertyType>).ValueUpdated(d, value);
 
             return value;
         }
 
         private static void OnValuePropertyChaned(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            Instance.OnValueChanged(d, e);
+            (Instance as BaseAttachedProperties<PropertyClass,PropertyType>).OnValueChanged(d, e);
 
-            Instance.ValueChanged(d, e);
+            (Instance as BaseAttachedProperties<PropertyClass,PropertyType>).ValueChanged(d, e);
         }
 
         public static PropertyType GetValue(DependencyObject d) => (PropertyType)d.GetValue(ValueProperty);

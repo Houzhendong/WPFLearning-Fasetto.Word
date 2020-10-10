@@ -1,0 +1,13 @@
+﻿################################################################################
+# 此 .gitignore 文件已由 Microsoft(R) Visual Studio 自动创建。
+################################################################################
+
+*.suo
+/bin/Debug
+/obj/Debug
+/packages
+/Source/Fasetto.Word.Core/bin
+/Source/Fasetto.Word.Core/obj
+/Source/Fasetto.Word/bin
+/Source/Fasetto.Word/obj
+/Source/packages

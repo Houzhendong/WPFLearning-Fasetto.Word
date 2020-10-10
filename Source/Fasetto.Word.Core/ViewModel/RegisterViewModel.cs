@@ -6,9 +6,9 @@ using System.Windows.Input;
 namespace Fasetto.Word.Core
 {
     /// <summary>
-    /// a view model for login screen
+    /// a view model for register screen
     /// </summary>
-    public class LoginViewModel : BaseViewModel
+    public class RegisterViewModel : BaseViewModel
     {
         #region Public Property
 
@@ -25,7 +25,7 @@ namespace Fasetto.Word.Core
         /// <summary>
         /// a flag indicating if the login command is running
         /// </summary>
-        public bool LoginIsRunning { get; set; }
+        public bool RegisterIsRunning { get; set; }
 
         #endregion
 
@@ -42,19 +42,19 @@ namespace Fasetto.Word.Core
         public ICommand RegisterCommand { get; set; }
         #endregion
 
-        public LoginViewModel()
+        public RegisterViewModel()
         {
-            LoginCommand = new RelayParameterizedCommand(async (paramter) => await Login(paramter));
-            RegisterCommand = new RelayCommand(async () => await Register());
+            RegisterCommand = new RelayParameterizedCommand(async (paramter) => await Register(paramter));
+            LoginCommand = new RelayCommand(async () => await Login());
         }
 
         /// <summary>
         /// the user to the register page
         /// </summary>
         /// <returns></returns>
-        private async Task Register()
+        private async Task Login()
         {
-            IoC.Get<ApplicationViewModel>().GoToPage(ApplicationPage.Register);
+            IoC.Get<ApplicationViewModel>().GoToPage(ApplicationPage.LoginPage);
 
             await Task.Delay(1);
         }
@@ -64,15 +64,14 @@ namespace Fasetto.Word.Core
         /// </summary>
         /// <param name="paramter">the <see cref="SecureString"/> passed in form the view for the user password</param>
         /// <returns></returns>
-        public async Task Login(object paramter)
+        public async Task Register(object paramter)
         {
-            await RunCommand(() => this.LoginIsRunning, async () =>
+            await RunCommand(() => this.RegisterIsRunning, async () =>
              {
                  await Task.Delay(500);
 
-                 IoC.Get<ApplicationViewModel>().GoToPage(ApplicationPage.Chat);
-                 //var email = this.Email;
-                 //var pass = (paramter as IHavePassword).SecurePassword.Unsecure();
+                 var email = this.Email;
+                 var pass = (paramter as IHavePassword).SecurePassword.Unsecure();
              });
         }
     }

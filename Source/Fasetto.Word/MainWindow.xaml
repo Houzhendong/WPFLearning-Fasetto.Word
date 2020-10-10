@@ -120,11 +120,12 @@
            VerticalAlignment="Center"
                       HorizontalAlignment="Center"
                        Text="{Binding PositionString}"/>-->
-            <Frame Grid.Column="1" x:Name="MainFrame" 
-                   local:ElementAttachedProperties.MouseMoveCommand="{Binding MouseMoveCommand}"
-                   Content="{Binding ApplicationViewModel.CurrentPage,
-                    Source={x:Static local:ViewModelLocator.Instance}, 
-                    Converter={local:ApplicationPageValueConverter}}"/>
+
+            <local:PageHost Grid.Column="1"
+                            DataContext="{Binding ApplicationViewModel.CurrentPage,
+                                Source={x:Static local:ViewModelLocator.Instance},
+                                Converter={local:ApplicationPageValueConverter}}"
+                            CurrentPage="{Binding}"/>
 
             <!--Side Menu-->
             <local:SideMenuControl Width="300"
