@@ -3,11 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:core="clr-namespace:Fasetto.Word.Core;assembly=Fasetto.Word.Core"
              xmlns:local="clr-namespace:Fasetto.Word"
              mc:Ignorable="d"
              d:DesignWidth="300">
     <Border Background="{StaticResource WordBlueBrush}"
-            Padding="5">
+            Padding="5"
+            d:DataContext="{x:Static core:ChatMessageListItemDesignModel.Instance}">
         <Grid>
 
             <!--profile picture-->
@@ -18,17 +20,40 @@
                     Width="35"
                     Background="Green"
                     BorderBrush="{StaticResource ForegroundLightBrush}"
+                    Visibility="{Binding SendByMe,Converter={local:BoolToVisibilityConverter}}"
                     BorderThickness="1">
-                <TextBlock Text="LM"
+                <TextBlock Text="{Binding Initials}"
                            VerticalAlignment="Center"
                            HorizontalAlignment="Center"
                            Foreground="{StaticResource ForegroundLightBrush}" />
 
             </Border>
 
+            <!--Chat message container-->
             <Grid Margin="40 0 0 0"
-                  HorizontalAlignment="Left">
+                  HorizontalAlignment="{Binding SendByMe, Converter={local:SentByMeToAlignmentConverter}}">
 
+                <Grid.Triggers>
+                    <EventTrigger RoutedEvent="MouseEnter">
+                        <BeginStoryboard>
+                            <Storyboard Storyboard.TargetName="ExtraDetails"
+                                        Storyboard.TargetProperty="Opacity">
+                                <DoubleAnimation From="0"
+                                                 To="1"
+                                                 Duration="00:00:00.5" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                    <EventTrigger RoutedEvent="MouseLeave">
+                        <BeginStoryboard>
+                            <Storyboard Storyboard.TargetName="ExtraDetails"
+                                        Storyboard.TargetProperty="Opacity">
+                                <DoubleAnimation To="0"
+                                                 Duration="00:00:00.5" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Grid.Triggers>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                     <RowDefinition Height="Auto" />
@@ -37,35 +62,60 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
 
                 <!--Speech bubble rectangle-->
                 <Border CornerRadius="10"
                         Grid.Column="1"
                         Padding="15"
-                        Background="{StaticResource ForegroundLightBrush}">
+                        Background="{Binding SendByMe,Converter={local:SentByMeToBackgroundConverter}}">
 
                     <!--Message text-->
                     <TextBlock VerticalAlignment="Center"
                                TextWrapping="Wrap"
                                FontSize="{StaticResource FontSizeRegular}"
-                               Text="This chat app is awesome! When is it coming out?"
+                               Text="{Binding Message}"
                                Foreground="{StaticResource WordDarkBlueBrush}" />
 
                 </Border>
 
+                <!--Send by guest arrow-->
                 <Path StrokeThickness="0"
                       Margin="8 10 -1 0"
                       Panel.ZIndex="1"
                       Data="M 0,0 L -8,8 L 0,16"
-                      Fill="{StaticResource ForegroundLightBrush}" />
+                      Visibility="{Binding SendByMe,Converter={local:BoolToVisibilityConverter}}"
+                      Fill="{Binding SendByMe,Converter={local:SentByMeToBackgroundConverter}}" />
 
-                <TextBlock Grid.Row="1"
-                           Grid.Column="1"
-                           Text="10:44"
-                           FontSize="{StaticResource FontSizeSmaller}"
-                           Foreground="{StaticResource ForegroundLightBrush}"
-                           HorizontalAlignment="Right" />
+                <!--Send by me arrow-->
+                <Path StrokeThickness="0"
+                      Margin="-1 10 8 0"
+                      Grid.Column="2"
+                      Panel.ZIndex="1"
+                      Data="M 0,0 L 8,8 L 0,16"
+                      Visibility="{Binding SendByMe,Converter={local:BoolToVisibilityConverter},ConverterParameter=false}"
+                      Fill="{Binding SendByMe,Converter={local:SentByMeToBackgroundConverter}}" />
+
+                <StackPanel Grid.Row="1"
+                            Name="ExtraDetails"
+                            Grid.Column="1"
+                            Opacity="0"
+                            Orientation="Horizontal">
+                    <!--Sent time-->
+                    <TextBlock Text="{Binding MessageSendTime,Converter={local:TimeToDisplayTimeConverter}}"
+                               FontSize="{StaticResource FontSizeSmaller}"
+                               Foreground="{StaticResource ForegroundLightBrush}"
+                               Margin="0 0 15 0"
+                               HorizontalAlignment="{Binding SendByMe, Converter={local:SentByMeToAlignmentConverter}}" />
+
+                    <!--Read time-->
+                    <TextBlock Text="{Binding MessageReadTime,Converter={local:TimeToReadTimeConverter}}"
+                               FontSize="{StaticResource FontSizeSmaller}"
+                               Foreground="{StaticResource WordDarkBlueBrush}"
+                               Visibility="{Binding SendByMe,Converter={local:BoolToVisibilityConverter},ConverterParameter=false}"
+                               HorizontalAlignment="{Binding SendByMe, Converter={local:SentByMeToAlignmentConverter}}" />
+                </StackPanel>
             </Grid>
 
         </Grid>
