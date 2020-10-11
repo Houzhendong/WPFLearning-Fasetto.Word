@@ -6,8 +6,7 @@
              xmlns:local="clr-namespace:Fasetto.Word"
              xmlns:core="clr-namespace:Fasetto.Word.Core;assembly=Fasetto.Word.Core"
              mc:Ignorable="d" 
-             Height="60"
-             d:DesignHeight="60" d:DesignWidth="300">
+             d:DesignWidth="300">
     <UserControl.Resources>
     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
         <Style x:Key="ContentStyle" TargetType="{x:Type ContentControl}">
@@ -31,15 +30,17 @@
                                     Width="4"/>
 
                             <!--Profile Picture-->
-                            <Border Grid.Column="0" Padding="8">
+                            <Border Grid.Column="0" 
+                                    Padding="8">
                                 <Border Background="{Binding ProfilePictureRGB,Converter={local:StringRGBToBrushConverter}}"
+                                        Height="40"
                                         Width="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
                                         CornerRadius="{Binding ActualHeight,RelativeSource={RelativeSource Self}}">
                                     <TextBlock Text="{Binding Initials}"
                                                VerticalAlignment="Center"
                                                HorizontalAlignment="Center"
                                                Foreground="{StaticResource ForegroundLightBrush}"
-                                               FontSize="{StaticResource FontSizeAverage}"/>
+                                               FontSize="{StaticResource FontSizeRegular}"/>
                                 </Border>
                             </Border>
 

@@ -13,5 +13,9 @@
 
     <Border Background="Transparent">
         <!--Main content Scroll-->
+        <Grid>
+            <local:ChatMessageListControl
+                    DataContext="{x:Static core:ChatListDesignModel.Instance}"/>
+        </Grid>
     </Border>
 </local:BasePage>
