@@ -9,12 +9,41 @@
                 mc:Ignorable="d"
                 x:Name="Page"
                 d:DesignHeight="700"
-                d:DesignWidth="700"
-                Title="ChatPage">
+                d:DesignWidth="700">
 
-    <Border Background="Transparent">
-        <!--Main content Scroll-->
-        <local:ChatMessageListControl DataContext="{x:Static core:ChatMessageListDesignModel.Instance}"/>
+    <Grid>
 
-    </Border>
+        <Grid.RowDefinitions>
+            <!--Title bat-->
+            <RowDefinition Height="Auto"/>
+            <!--Chat List-->
+            <RowDefinition Height="*"/>
+            <!--Message Send Text Box-->
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid Height="50">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Parnell"
+                       Foreground="{StaticResource ForegroundLightBrush}"
+                       FontSize="{StaticResource FontSizeXLarge}"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Grid.ColumnSpan="2"/>
+            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                <Button Style="{StaticResource IconButton}" Content="{StaticResource IconSearch}"/>
+                <Button Style="{StaticResource IconButton}" Content="{StaticResource IconEllipsisVertical}"/>
+            </StackPanel>
+        </Grid>
+        
+        <!--chat List-->
+        <local:ChatMessageListControl 
+            Grid.Row="1"
+            DataContext="{x:Static core:ChatMessageListDesignModel.Instance}"/>
+        
+    </Grid>
+
 </local:BasePage>

@@ -6,7 +6,7 @@ using System.Windows.Media;
 
 namespace Fasetto.Word
 {
-    public class BasePage : Page
+    public class BasePage : UserControl 
     { 
         /// <summary>
         /// the animation the play the page is first loaded

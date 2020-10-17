@@ -7,7 +7,7 @@
              xmlns:local="clr-namespace:Fasetto.Word"
              mc:Ignorable="d"
              d:DesignWidth="300">
-    <Border Background="{StaticResource WordBlueBrush}"
+    <Border 
             Padding="5"
             d:DataContext="{x:Static core:ChatMessageListItemDesignModel.Instance}">
         <Grid>
@@ -97,10 +97,12 @@
                       Visibility="{Binding SendByMe,Converter={local:BoolToVisibilityConverter},ConverterParameter=false}"
                       Fill="{Binding SendByMe,Converter={local:SentByMeToBackgroundConverter}}" />
 
+                <!--time container-->
                 <StackPanel Grid.Row="1"
                             Name="ExtraDetails"
                             Grid.Column="1"
                             Opacity="0"
+                            HorizontalAlignment="{Binding SendByMe, Converter={local:SentByMeToAlignmentConverter},ConverterParameter=true}"
                             Orientation="Horizontal">
                     <!--Sent time-->
                     <TextBlock Text="{Binding MessageSendTime,Converter={local:TimeToDisplayTimeConverter}}"

@@ -11,7 +11,7 @@
         <ControlTemplate TargetType="UserControl">
 
             <!--Side Menu-->
-            <Border Background="{StaticResource BackgroundLightBrush}">
+            <Border>
                 <!--Main Control-->
                 <Grid>
                     <Grid.RowDefinitions>
@@ -20,7 +20,7 @@
                     </Grid.RowDefinitions>
 
                     <!-- Top Menu-->
-                    <Grid Height="50" Background="{StaticResource WordBlueBrush}">
+                    <Grid Height="50">
 
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
@@ -44,8 +44,10 @@
                         Content="{StaticResource IconSetting}"/>
                     </Grid>
 
+                    <Border Grid.Row="1" Background="{StaticResource ForegroundLightBrush}">
                     <!--User Content-->
-                    <ContentPresenter Grid.Row="1"/>
+                        <ContentPresenter />
+                    </Border>
                 </Grid>
             </Border>
         </ControlTemplate>
