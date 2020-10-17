@@ -15,35 +15,82 @@
 
         <Grid.RowDefinitions>
             <!--Title bat-->
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" />
             <!--Chat List-->
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="*" />
             <!--Message Send Text Box-->
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <Grid Height="50">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <TextBlock Text="Parnell"
                        Foreground="{StaticResource ForegroundLightBrush}"
                        FontSize="{StaticResource FontSizeXLarge}"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
-                       Grid.ColumnSpan="2"/>
-            <StackPanel Grid.Column="1" Orientation="Horizontal">
-                <Button Style="{StaticResource IconButton}" Content="{StaticResource IconSearch}"/>
-                <Button Style="{StaticResource IconButton}" Content="{StaticResource IconEllipsisVertical}"/>
+                       Grid.ColumnSpan="2" />
+            <StackPanel Grid.Column="1"
+                        Orientation="Horizontal">
+                <Button Style="{StaticResource IconGrowButton}"
+                        Content="{StaticResource IconSearch}" />
+                <Button Style="{StaticResource IconGrowButton}"
+                        Content="{StaticResource IconEllipsisVertical}" />
             </StackPanel>
         </Grid>
-        
+
         <!--chat List-->
-        <local:ChatMessageListControl 
-            Grid.Row="1"
-            DataContext="{x:Static core:ChatMessageListDesignModel.Instance}"/>
-        
+        <local:ChatMessageListControl Grid.Row="1"
+                                      DataContext="{x:Static core:ChatMessageListDesignModel.Instance}" />
+
+        <Grid Grid.Row="2"
+              MinHeight="50"
+              MaxHeight="110"
+              Background="{StaticResource ForegroundLightBrush}">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Button Style="{StaticResource IconGrowButton}"
+                    Content="{StaticResource IconPaperclip}"
+                    Height="{Binding MinHeight, RelativeSource={RelativeSource AncestorType=Grid}}"
+                    VerticalAlignment="Top"
+                    Foreground="{StaticResource ForegroundDarkBrush}" />
+
+            <TextBox Grid.Column="1"
+                     Tag="Write a message..." 
+                     Style="{StaticResource TextBoxPlaceholder}"
+                     FontSize="{StaticResource FontSizeRegular}"
+                     BorderThickness="0"
+                     AcceptsReturn="True"
+                     VerticalScrollBarVisibility="Auto"
+                     VerticalAlignment="Center"
+                     TextWrapping="Wrap"
+                     AcceptsTab="True"/>
+
+            <StackPanel Grid.Column="2"
+                        Orientation="Horizontal"
+                    VerticalAlignment="Top"
+                        Margin="5 0">
+
+                <Button Style="{StaticResource IconGrowButton}"
+                        Content="{StaticResource IconSmile}"
+                        Height="{Binding MinHeight, RelativeSource={RelativeSource AncestorType=Grid}}"
+                        Foreground="{StaticResource WordOrangeBrush}" />
+
+                <Button Content="Send"
+                        FontSize="{StaticResource FontSizeRegular}"
+                        Background="{StaticResource WordGreenBrush}"
+                        Padding="5 0"/>
+            </StackPanel>
+        </Grid>
+
     </Grid>
 
 </local:BasePage>
