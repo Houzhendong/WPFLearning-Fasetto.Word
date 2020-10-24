@@ -71,6 +71,9 @@
     <Compile Include="AttachedProperties\ElementAttachedProperties.cs" />
     <Compile Include="AttachedProperties\FrameworkElementAnimationAttachedProperties.cs" />
     <Compile Include="AttachedProperties\PasswordProperties.cs" />
+    <Compile Include="Controls\BubbleContent.xaml.cs">
+      <DependentUpon>BubbleContent.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Chat\ChatMessage\ChatMessageListItemControl.xaml.cs">
       <DependentUpon>ChatMessageListItemControl.xaml</DependentUpon>
     </Compile>
@@ -111,6 +114,10 @@
     <Compile Include="ViewModels\ViewModelLocator.cs" />
     <Compile Include="ViewModels\WindowViewModel.cs" />
     <Compile Include="Window\WindowResizer.cs" />
+    <Page Include="Controls\BubbleContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\Chat\ChatMessage\ChatMessageListItemControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

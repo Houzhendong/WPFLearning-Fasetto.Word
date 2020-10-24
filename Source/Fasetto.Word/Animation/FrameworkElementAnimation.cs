@@ -22,13 +22,16 @@ namespace Fasetto.Word
 
     public static class FrameworkElementAnimations
     {
-        public static async Task SlideAndFadeInFromRight(this FrameworkElement element, float seconds = 0.3f, bool keepMargin = true)
+
+        #region Slide In From Left
+        
+        public static async Task SlideAndFadeInFromLeft(this FrameworkElement element, float seconds = 0.3f, bool keepMargin = true)
         {
             //create a storyboard
             var sb = new Storyboard();
 
             //add slide form right animation
-            sb.AddSlideFromRight(seconds, element.ActualWidth,keepMargin : keepMargin);
+            sb.AddSlideFromLeft(seconds, element.ActualWidth,keepMargin : keepMargin);
 
             //add slide form right animation
             sb.AddFadeIn(seconds);
@@ -60,13 +63,17 @@ namespace Fasetto.Word
             await Task.Delay((int)(seconds * 1000));
         }
 
-        public static async Task SlideAndFadeInFromLeft(this FrameworkElement element, float seconds = 0.3f, bool keepMargin = true)
+        #endregion
+
+        #region Slide In From Right
+
+        public static async Task SlideAndFadeInFromRight(this FrameworkElement element, float seconds = 0.3f, bool keepMargin = true)
         {
             //create a storyboard
             var sb = new Storyboard();
 
             //add slide form right animation
-            sb.AddSlideFromLeft(seconds, element.ActualWidth,keepMargin : keepMargin);
+            sb.AddSlideFromRight(seconds, element.ActualWidth,keepMargin : keepMargin);
 
             //add slide form right animation
             sb.AddFadeIn(seconds);
@@ -98,5 +105,48 @@ namespace Fasetto.Word
             await Task.Delay((int)(seconds * 1000));
         }
 
+        #endregion
+
+        #region Slide In From Bottom 
+
+        public static async Task SlideAndFadeInFromBottom(this FrameworkElement element, float seconds = 0.3f, bool keepMargin = true)
+        {
+            //create a storyboard
+            var sb = new Storyboard();
+
+            //add slide form right animation
+            sb.AddSlideFromBottom(seconds, element.ActualHeight,keepMargin : keepMargin);
+
+            //add slide form right animation
+            sb.AddFadeIn(seconds);
+
+            //start animation
+            sb.Begin(element);
+            element.Visibility = Visibility.Visible;
+
+            //wait for it to finish
+            await Task.Delay((int)(seconds * 1000));
+        }
+
+        public static async Task SlideAndFadeOutToBottom(this FrameworkElement element, float seconds = 0.3f, bool keepMargin = true)
+        {
+            //create a storyboard
+            var sb = new Storyboard();
+
+            //add slide form right animation
+            sb.AddSlideToBottom(seconds, element.ActualHeight,keepMargin : keepMargin);
+
+            //add slide form right animation
+            sb.AddFadeOut(seconds);
+
+            //start animation
+            sb.Begin(element);
+            element.Visibility = Visibility.Visible;
+
+            //wait for it to finish
+            await Task.Delay((int)(seconds * 1000));
+        }
+
+        #endregion
     }
 }
