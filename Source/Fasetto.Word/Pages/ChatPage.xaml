@@ -22,6 +22,18 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
+        <Border Background="Transparent" 
+                Grid.RowSpan="2"
+                Panel.ZIndex="1"
+                Visibility="{Binding AnyPopupVisible,Converter={local:BoolToVisibilityConverter}, ConverterParameter=True}">
+            <Border.InputBindings>
+
+                <MouseBinding MouseAction="LeftClick"
+                              Command="{Binding PopupClickawayCommand}" />
+            </Border.InputBindings>
+
+        </Border>
+
         <Grid Height="50">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -48,12 +60,14 @@
 
         <local:BubbleContent Grid.Row="1"
                              HorizontalAlignment="Left"
+                             Panel.ZIndex="2"
                              DataContext="{Binding AttachmentMenu}"
                              VerticalAlignment="Bottom"
-                             local:AnimateSlideInFromBottomProperty.Value="{Binding ViewModel.AttachmentMenuVisible,RelativeSource={RelativeSource AncestorType=local:ChatPage}}"/>
-        
+                             local:AnimateSlideInFromBottomProperty.Value="{Binding ViewModel.AttachmentMenuVisible,RelativeSource={RelativeSource AncestorType=local:ChatPage}}" />
+
         <Grid Grid.Row="2"
               MinHeight="50"
+              Panel.ZIndex="3"
               MaxHeight="110"
               Background="{StaticResource ForegroundLightBrush}">
 
@@ -71,7 +85,7 @@
                     Foreground="{StaticResource ForegroundDarkBrush}" />
 
             <TextBox Grid.Column="1"
-                     Tag="Write a message..." 
+                     Tag="Write a message..."
                      Style="{StaticResource TextBoxPlaceholder}"
                      FontSize="{StaticResource FontSizeRegular}"
                      BorderThickness="0"
@@ -79,11 +93,11 @@
                      VerticalScrollBarVisibility="Auto"
                      VerticalAlignment="Center"
                      TextWrapping="Wrap"
-                     AcceptsTab="True"/>
+                     AcceptsTab="True" />
 
             <StackPanel Grid.Column="2"
                         Orientation="Horizontal"
-                    VerticalAlignment="Top"
+                        VerticalAlignment="Top"
                         Margin="5 0">
 
                 <Button Style="{StaticResource IconGrowButton}"
@@ -94,7 +108,7 @@
                 <Button Content="Send"
                         FontSize="{StaticResource FontSizeRegular}"
                         Background="{StaticResource WordGreenBrush}"
-                        Padding="5 0"/>
+                        Padding="5 0" />
             </StackPanel>
         </Grid>
 

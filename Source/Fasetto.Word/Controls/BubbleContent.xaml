@@ -6,9 +6,7 @@
              xmlns:local="clr-namespace:Fasetto.Word"
              xmlns:core="clr-namespace:Fasetto.Word.Core;assembly=Fasetto.Word.Core"
              mc:Ignorable="d"
-             d:DataContext="{x:Static core:ChatAttachmentPopupMenuDesignModel.Instance}"
-             d:DesignHeight="100"
-             d:DesignWidth="800">
+             d:DataContext="{x:Static core:ChatAttachmentPopupMenuDesignModel.Instance}">
 
     <!--Chat message container-->
     <Grid Margin="3 0 0 3"
@@ -18,7 +16,7 @@
         <Border CornerRadius="10"
                 Grid.Column="1"
                 Background="{Binding BubbleBackground,Converter={local:StringRGBToBrushConverter}}"
-                Padding="15">
+                Padding="10">
 
             <Border.Effect>
                 <DropShadowEffect BlurRadius="4"
@@ -26,11 +24,7 @@
                                   Color="{StaticResource WordLightBlue}" />
             </Border.Effect>
             <!--Message text-->
-            <TextBlock VerticalAlignment="Center"
-                       TextWrapping="Wrap"
-                       FontSize="{StaticResource FontSizeRegular}"
-                       Text="test"
-                       Foreground="{StaticResource WordDarkBlueBrush}" />
+            <ContentControl Content="{Binding Converter={local:PopupContentConverter}}" />
 
         </Border>
     </Grid>

@@ -2,7 +2,7 @@
 
 namespace Fasetto.Word
 {
-    public class BasePopupMenuViewModel : BaseViewModel
+    public class BasePopupViewModel : BaseViewModel
     {
         #region Public Properties
 
@@ -11,11 +11,15 @@ namespace Fasetto.Word
         /// </summary>
         public string BubbleBackground { get; set; }
 
+        /// <summary>
+        /// the content inside of this popup menu
+        /// </summary>
+        public BaseViewModel Content { get; set; }
         #endregion
 
         #region Constructor
 
-        public BasePopupMenuViewModel()
+        public BasePopupViewModel()
         {
             BubbleBackground = "ffffff"; 
         }

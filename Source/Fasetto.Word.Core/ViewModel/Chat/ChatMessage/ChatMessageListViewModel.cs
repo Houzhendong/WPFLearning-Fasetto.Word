@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Dynamic;
 using System.Windows.Input;
 
 namespace Fasetto.Word.Core
@@ -14,6 +15,8 @@ namespace Fasetto.Word.Core
         /// </summary>
         public ICommand AttachmentButtonCommand { get; set; }
 
+        public ICommand PopupClickawayCommand { get; set; }
+
         /// <summary>
         /// the display name of this chat list
         /// </summary>
@@ -21,6 +24,7 @@ namespace Fasetto.Word.Core
 
         public bool AttachmentMenuVisible{ get; set; }
 
+        public bool AnyPopupVisible => AttachmentMenuVisible;
 
         public ChatAttachmentPopupMenuViewModel AttachmentMenu { get; set; }
 
@@ -29,6 +33,8 @@ namespace Fasetto.Word.Core
             AttachmentButtonCommand = new RelayCommand(AttachmentButton);
 
             AttachmentMenu = new ChatAttachmentPopupMenuViewModel();
+
+            PopupClickawayCommand = new RelayCommand(PopupClickaway);
         }
 
         /// <summary>
@@ -37,6 +43,11 @@ namespace Fasetto.Word.Core
         public void AttachmentButton()
         {
             AttachmentMenuVisible ^= true; 
+        }
+
+        public void PopupClickaway()
+        {
+            AttachmentMenuVisible = false;
         }
     }
 }
