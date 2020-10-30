@@ -15,7 +15,15 @@ namespace Fasetto.Word.Core
         /// </summary>
         public ICommand AttachmentButtonCommand { get; set; }
 
+        /// <summary>
+        /// The command for when the area outside of any popup is clicked
+        /// </summary>
         public ICommand PopupClickawayCommand { get; set; }
+
+        /// <summary>
+        /// The command for the user click send button 
+        /// </summary>
+        public ICommand SendCommand { get; set; }
 
         /// <summary>
         /// the display name of this chat list
@@ -35,6 +43,8 @@ namespace Fasetto.Word.Core
             AttachmentMenu = new ChatAttachmentPopupMenuViewModel();
 
             PopupClickawayCommand = new RelayCommand(PopupClickaway);
+
+            SendCommand = new RelayCommand(Send);
         }
 
         /// <summary>
@@ -48,6 +58,16 @@ namespace Fasetto.Word.Core
         public void PopupClickaway()
         {
             AttachmentMenuVisible = false;
+        }
+
+        public void Send()
+        {
+            IoC.UI.ShowMessage(new MessageBoxDialogViewModel 
+            {
+                Title = "Send Message",
+                Message = "Thank you for writing a nice message",
+                OKText = "OK"
+            });
         }
     }
 }

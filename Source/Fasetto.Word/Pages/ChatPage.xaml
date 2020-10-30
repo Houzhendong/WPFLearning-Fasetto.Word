@@ -22,7 +22,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <Border Background="Transparent" 
+        <Border Background="Transparent"
                 Grid.RowSpan="2"
                 Panel.ZIndex="1"
                 Visibility="{Binding AnyPopupVisible,Converter={local:BoolToVisibilityConverter}, ConverterParameter=True}">
@@ -106,6 +106,7 @@
                         Foreground="{StaticResource WordOrangeBrush}" />
 
                 <Button Content="Send"
+                        Command="{Binding SendCommand}"
                         FontSize="{StaticResource FontSizeRegular}"
                         Background="{StaticResource WordGreenBrush}"
                         Padding="5 0" />

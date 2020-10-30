@@ -18,11 +18,19 @@ namespace Fasetto.Word
         {
             base.OnStartup(e);
 
-            IoC.Setup();
+            //setup the main application
+            ApplicationSetup();
 
             //show the main window
             Current.MainWindow = new MainWindow();
             Current.MainWindow.Show();
+        }
+
+        private void ApplicationSetup()
+        {
+            IoC.Setup();
+
+            IoC.Kernel.Bind<IUIManager>().ToConstant(new UIManager());
         }
     }
 }
