@@ -73,4 +73,15 @@ namespace Fasetto.Word
                 await element.SlideAndFadeOutToBottom(FirstLoad ? 0 : 0.2f, keepMargin: false);
         }
     }
+
+    public class AnimateFadeInProperty : AnimateBaseProperty<AnimateFadeInProperty>
+    {
+        protected override async void DoAnimation(FrameworkElement element, bool value)
+        {
+            if (value)
+                await element.FadeIn(FirstLoad ? 0 : 0.2f, keepMargin: false);
+            else
+                await element.FadeOut(FirstLoad ? 0 : 0.2f, keepMargin: false);
+        }
+    }
 }

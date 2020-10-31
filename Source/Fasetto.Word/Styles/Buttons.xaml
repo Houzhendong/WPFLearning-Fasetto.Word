@@ -118,7 +118,6 @@
                             <TextBlock Text="{TemplateBinding Content}"
                                        Focusable="False"
                                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                       Margin="{TemplateBinding Padding}"
                                        Visibility="{TemplateBinding local:IsBusyProperty.Value , Converter={local:HasTextToVisibilityConverter}}"
                                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />

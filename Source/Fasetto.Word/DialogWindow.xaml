@@ -12,8 +12,8 @@
         ResizeMode="NoResize"
         SizeToContent="WidthAndHeight"
         Icon="Images/Logo/icon.png"
-        MinHeight="100"
-        MinWidth="300"
+        MinHeight="{Binding MinimumHeight}"
+        MinWidth="{Binding MinimumWidth}"
         x:Name="AppWindow"
         Title="{Binding Title}">
 
@@ -112,6 +112,6 @@
 
     <Border Background="{StaticResource ForegroundLightBrush}"
             Padding="5">
-        <TextBlock Text="Test" />
+        <ContentControl Content ="{Binding Content}"/>
     </Border>
 </Window>

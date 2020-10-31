@@ -9,6 +9,8 @@
         WindowStyle="None"
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
+        Deactivated="AppWindow_Deactivated"
+        Activated="AppWindow_Activated"
         Icon="Images/Logo/icon.png"
         x:Name="AppWindow"
         Title="Welcom,Friend!"
@@ -131,6 +133,13 @@
                       HorizontalAlignment="Center"
                        Text="{Binding PositionString}"/>-->
 
+            <Border Grid.ColumnSpan="3"
+                    Panel.ZIndex="10"
+                    Opacity="0.3">
+                <Border Background="{StaticResource ForegroundVeryDarkBrush}"
+                        local:AnimateFadeInProperty.Value="{Binding DimmableOverlayVisible}"/>
+            </Border>
+            
             <local:PageHost Grid.Column="1"
                             DataContext="{Binding ApplicationViewModel.CurrentPage,
                                 Source={x:Static local:ViewModelLocator.Instance},

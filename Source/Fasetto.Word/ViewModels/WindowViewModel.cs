@@ -1,6 +1,7 @@
 ﻿using Fasetto.Word.Core;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Navigation;
 
 namespace Fasetto.Word
 {
@@ -15,6 +16,8 @@ namespace Fasetto.Word
         public Thickness ResizeBorderThickness { get { return new Thickness(ResizeBorder + OuterMerginSize); } }
 
         public Thickness InnerContentPadding { get { return new Thickness(ResizeBorder); } }
+
+        public bool DimmableOverlayVisible { get; set; }
 
         public int WindowRadius
         {

@@ -8,26 +8,7 @@ namespace Fasetto.Word
     {
         public Task ShowMessage(MessageBoxDialogViewModel viewModel)
         {
-            var tcs = new TaskCompletionSource<bool>();
-            Task.Run(() => 
-            {
-            
-            Application.Current.Dispatcher.Invoke(() =>
-            {
-                try
-                {
-                    new DialogWindow().ShowDialog();
-                }
-                finally
-                {
-
-                    tcs.TrySetResult(true);
-                }
-            });
-            });
-
-
-            return tcs.Task;
+            return new DialogMessageBox().ShowDialog(viewModel);
         } 
     }
 }

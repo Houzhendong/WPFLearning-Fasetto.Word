@@ -13,6 +13,16 @@ namespace Fasetto.Word
         public string Title { get; set; }
 
         /// <summary>
+        /// the minimum width of this dialog
+        /// </summary>
+        public int WindowMinimumWidth { get; set; }
+
+        /// <summary>
+        /// the minimum height of this dialog
+        /// </summary>
+        public int WindowMinimumHeight{ get; set; }
+
+        /// <summary>
         /// the content to host inside the dialog
         /// </summary>
         public Control Content { get; set; }
@@ -21,6 +31,9 @@ namespace Fasetto.Word
 
         public DialogWindowViewModel(Window window) : base(window)
         {
+            WindowMinimumHeight = 100;
+            WindowMinimumWidth = 250;
+
             TitleHeight = 30;
         }
     }

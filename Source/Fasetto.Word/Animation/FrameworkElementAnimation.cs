@@ -148,5 +148,43 @@ namespace Fasetto.Word
         }
 
         #endregion
+    
+        #region Fade In/Out 
+
+        public static async Task FadeIn(this FrameworkElement element, float seconds = 0.3f, bool keepMargin = true)
+        {
+            //create a storyboard
+            var sb = new Storyboard();
+
+            //add slide form right animation
+            sb.AddFadeIn(seconds);
+
+            //start animation
+            sb.Begin(element);
+            element.Visibility = Visibility.Visible;
+
+            //wait for it to finish
+            await Task.Delay((int)(seconds * 1000));
+        }
+
+        public static async Task FadeOut(this FrameworkElement element, float seconds = 0.3f, bool keepMargin = true)
+        {
+            //create a storyboard
+            var sb = new Storyboard();
+
+            //add slide form right animation
+            sb.AddFadeOut(seconds);
+
+            //start animation
+            sb.Begin(element);
+            element.Visibility = Visibility.Visible;
+
+            //wait for it to finish
+            await Task.Delay((int)(seconds * 1000));
+
+            element.Visibility = Visibility.Collapsed;
+        }
+
+        #endregion
     }
 }
