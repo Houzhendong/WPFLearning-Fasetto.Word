@@ -126,6 +126,7 @@ namespace Fasetto.Word
 
             //wait for it to finish
             await Task.Delay((int)(seconds * 1000));
+
         }
 
         public static async Task SlideAndFadeOutToBottom(this FrameworkElement element, float seconds = 0.3f, bool keepMargin = true)
@@ -145,6 +146,8 @@ namespace Fasetto.Word
 
             //wait for it to finish
             await Task.Delay((int)(seconds * 1000));
+
+            element.Visibility = Visibility.Hidden;
         }
 
         #endregion

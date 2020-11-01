@@ -12,6 +12,8 @@
 
         public bool SideMenuVisiable { get; set; } = false;
 
+        public bool SettingsMenuVisible { get; set; } = false;
+
         /// <summary>
         /// navigates to the specified page
         /// </summary>

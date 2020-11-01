@@ -133,13 +133,18 @@
                       HorizontalAlignment="Center"
                        Text="{Binding PositionString}"/>-->
 
+            <local:SettingControl Grid.ColumnSpan="2"
+                                  Panel.ZIndex="9"
+                                  local:AnimateSlideInFromBottomMarginProperty.Value="{Binding 
+                ApplicationViewModel.SettingsMenuVisible, Source={x:Static local:ViewModelLocator.Instance}}" />
+
             <Border Grid.ColumnSpan="3"
                     Panel.ZIndex="10"
                     Opacity="0.3">
                 <Border Background="{StaticResource ForegroundVeryDarkBrush}"
-                        local:AnimateFadeInProperty.Value="{Binding DimmableOverlayVisible}"/>
+                        local:AnimateFadeInProperty.Value="{Binding DimmableOverlayVisible}" />
             </Border>
-            
+
             <local:PageHost Grid.Column="1"
                             DataContext="{Binding ApplicationViewModel.CurrentPage,
                                 Source={x:Static local:ViewModelLocator.Instance},

@@ -236,7 +236,7 @@
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             Background="{TemplateBinding Background}"
-                            Padding="15 15 15 15"
+                            Padding="10"
                             SnapsToDevicePixels="True">
                         <Grid HorizontalAlignment="Center"
                               VerticalAlignment="Center">
@@ -300,7 +300,7 @@
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             Background="{TemplateBinding Background}"
-                            Padding="15 15 15 15"
+                            Padding="10"
                             SnapsToDevicePixels="True">
 
                         <Border.RenderTransform>

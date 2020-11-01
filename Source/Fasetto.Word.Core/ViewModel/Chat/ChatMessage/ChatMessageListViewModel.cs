@@ -62,7 +62,7 @@ namespace Fasetto.Word.Core
 
         public void Send()
         {
-            IoC.UI.ShowMessage(new MessageBoxDialogViewModel 
+            IoC.UI.ShowMessage(new MessageBoxDialogViewModel
             {
                 Title = "Send Message",
                 Message = "Thank you for writing a nice message",
