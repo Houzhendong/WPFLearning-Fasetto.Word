@@ -26,7 +26,8 @@
                         <Border Margin="{Binding OuterMerginSizeThickness}">
                             <Grid>
                                 <Border CornerRadius="{Binding WindowCornerRadius}"
-                                        Background="{Binding BackgroundLightBrush ,FallbackValue=white}">
+                                        Background="{Binding BackgroundLightBrush ,FallbackValue=white}"
+                                        Name="Mask">
                                     <Border.Effect>
                                         <DropShadowEffect ShadowDepth="0"
                                                           Opacity="0.2" />

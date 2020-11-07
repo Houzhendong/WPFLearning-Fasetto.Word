@@ -8,7 +8,7 @@
              d:DesignHeight="400"
              d:DesignWidth="400">
     <Border Background="{StaticResource BackgroundLightBrush}"
-          Padding="0 20 0 0">
+            Padding="15">
 
         <Grid>
             <Grid.RowDefinitions>
@@ -21,8 +21,8 @@
                 <Button Style="{StaticResource IconGrowButton}"
                         Content="{StaticResource IconArrowLeft}"
                         Foreground="{StaticResource ForegroundDarkBrush}"
-                        HorizontalAlignment="Left" 
-                        Command="{Binding CloseCommand}"/>
+                        HorizontalAlignment="Left"
+                        Command="{Binding CloseCommand}" />
 
                 <StackPanel HorizontalAlignment="Center"
                             Orientation="Horizontal">
@@ -39,7 +39,72 @@
             </Grid>
 
             <!--Main Content-->
+            <Grid Grid.Row="1"
+                  VerticalAlignment="Top"
+                  Width="700 ">
 
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <!--Profile Picture-->
+                <Grid Margin="0 0 10 0"
+                      Height="{Binding ActualWidth,RelativeSource={RelativeSource Self}}">
+                    <Border CornerRadius="8"
+                            x:Name="Mask"
+                            Background="White" />
+
+                    <Image Source="/Images/Logo/Sample.jpg"
+                           Stretch="UniformToFill">
+                        <Image.OpacityMask>
+                            <VisualBrush Visual="{Binding ElementName=Mask}" />
+                        </Image.OpacityMask>
+                    </Image>
+
+                </Grid>
+
+                <!-- Profile Details -->
+                <Grid Grid.Column="1"
+                      local:PanelChildMargin.Value="10 8"
+                      Margin="20 0 0 0 ">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <!--Labels-->
+                    <TextBlock Text="Name" />
+                    <TextBlock Text="Username"
+                               Grid.Row="1" />
+                    <TextBlock Text="Password"
+                               Grid.Row="2" />
+                    <TextBlock Text="Email"
+                               Grid.Row="3" />
+
+                    <!-- Content-->
+                    <TextBlock Text="Luke Malpass"
+                               Grid.Column="1" />
+                    <TextBlock Text="Luke"
+                               Grid.Row="1"
+                               Grid.Column="2" />
+                    <TextBlock Text="******"
+                               Grid.Row="2"
+                               Grid.Column="3" />
+                    <TextBlock Text="12345678@gmail.com"
+                               Grid.Row="3"
+                               Grid.Column="4" />
+                </Grid>
+            </Grid>
         </Grid>
     </Border>
 </UserControl>
