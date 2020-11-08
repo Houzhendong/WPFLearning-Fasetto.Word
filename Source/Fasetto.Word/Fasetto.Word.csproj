@@ -90,6 +90,9 @@
     <Compile Include="Controls\Chat\ChatList\ChatListItemControl.xaml.cs">
       <DependentUpon>ChatListItemControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Input\TextEntryControl.xaml.cs">
+      <DependentUpon>TextEntryControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Menu\VerticalMenu.xaml.cs">
       <DependentUpon>VerticalMenu.xaml</DependentUpon>
     </Compile>
@@ -120,6 +123,7 @@
     <Compile Include="Pages\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ValueConverters\BooleanInvertConverter.cs" />
     <Compile Include="ValueConverters\IconTypeToPathConverter.cs" />
     <Compile Include="ValueConverters\MenuItemTypeVisibilityConverter.cs" />
     <Compile Include="ValueConverters\PopupContentConverter.cs" />
@@ -153,6 +157,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\Chat\ChatList\ChatListItemControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Input\TextEntryControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
