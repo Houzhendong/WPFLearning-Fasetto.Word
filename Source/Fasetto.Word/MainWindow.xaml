@@ -26,7 +26,7 @@
                         <Border Margin="{Binding OuterMerginSizeThickness}">
                             <Grid>
                                 <Border CornerRadius="{Binding WindowCornerRadius}"
-                                        Background="{Binding BackgroundLightBrush ,FallbackValue=white}"
+                                        Background="{StaticResource BackgroundLightBrush}"
                                         Name="Mask">
                                     <Border.Effect>
                                         <DropShadowEffect ShadowDepth="0"
@@ -59,7 +59,7 @@
                                         <Button Command="{Binding MenuCommand}"
                                                 Style="{StaticResource SystemIconButton}">
                                             <Image Source="/Images/Logo/icon.png"
-                                                   Height="{Binding TitleHeightGridLength}" />
+                                                   Height="Auto" />
                                         </Button>
 
                                         <!--Title-->

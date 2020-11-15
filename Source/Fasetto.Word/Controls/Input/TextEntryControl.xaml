@@ -6,16 +6,23 @@
              xmlns:local="clr-namespace:Fasetto.Word"
              xmlns:core="clr-namespace:Fasetto.Word.Core;assembly=Fasetto.Word.Core"
              mc:Ignorable="d"
-             DataContext="{x:Static core:TextEntryDesignModel.Instance}">
+             d:DataContext="{x:Static core:TextEntryDesignModel.Instance}">
     <Border BorderBrush="{StaticResource ForegroundDarkBrush}"
             BorderThickness="0 0 0 0.4">
 
         <Grid Background="{StaticResource ForegroundLightBrush}">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Name="LabelColumnDefinition"
+                                  Width="Auto" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
+
+            <!--double click edit-->
+            <Grid.InputBindings>
+                <MouseBinding MouseAction="LeftDoubleClick"
+                              Command="{Binding EditCommand}" />
+            </Grid.InputBindings>
 
             <Grid.Triggers>
                 <EventTrigger RoutedEvent="MouseEnter">
@@ -43,11 +50,12 @@
 
             <!--Label-->
             <TextBlock Text="{Binding Label}"
+                       Name="Label"
                        Margin="15 12"
                        VerticalAlignment="Center" />
 
             <!--Edit content-->
-            <TextBox Text="{Binding EditedText}"
+            <TextBox Text="{Binding EditedText, UpdateSourceTrigger=PropertyChanged}"
                      Grid.Column="1"
                      Style="{StaticResource TextBoxPlaceholder}"
                      FontSize="{StaticResource FontSizeRegular}"
@@ -60,6 +68,7 @@
             <TextBlock Text="{Binding OriginalText}"
                        Grid.Column="1"
                        local:AnimateFadeInProperty.Value="{Binding Editing,Converter={local:BooleanInvertConverter}}"
+                       Visibility="Visible"
                        Margin="15 12" />
 
             <Grid Grid.Column="2">

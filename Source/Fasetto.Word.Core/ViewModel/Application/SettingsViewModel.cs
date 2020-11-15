@@ -30,6 +30,12 @@ namespace Fasetto.Word.Core
         {
             CloseCommand = new RelayCommand(Close);
             OpenCommand = new RelayCommand(Open);
+
+            //TODO : remove this when the real run envirment
+            Name = new TextEntryViewModel { Label = "Name", OriginalText = "Luke Malpass" };
+            UserName = new TextEntryViewModel { Label = "UserName", OriginalText = "Luke" };
+            Password = new TextEntryViewModel { Label = "Password", OriginalText = "********" };
+            Email = new TextEntryViewModel { Label = "Email", OriginalText = "test@email.com" };
         }
 
         public void Close()

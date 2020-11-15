@@ -14,5 +14,10 @@ namespace Fasetto.Word
 
             DataContext = IoC.Settings;
         }
+
+        private void TextEntryControl_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+
+        }
     }
 }
