@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.Design;
+﻿using System;
+using System.ComponentModel.Design;
 using System.Windows.Input;
 
 namespace Fasetto.Word.Core
@@ -14,9 +15,14 @@ namespace Fasetto.Word.Core
 
         public TextEntryViewModel UserName { get; set; }
 
-        public TextEntryViewModel Password { get; set; }
+        public PasswordEntryViewModel Password { get; set; }
 
         public TextEntryViewModel Email { get; set; }
+
+        /// <summary>
+        /// The text for the logout button
+        /// </summary>
+        public string LogoutButtonText { get; set; }
 
         #endregion
 
@@ -24,18 +30,28 @@ namespace Fasetto.Word.Core
 
         public ICommand CloseCommand { get; set; }
         public ICommand OpenCommand { get; set; }
+        public ICommand LogoutCommand { get; set; }
+
+        public ICommand ClearuserDataCommand { get; set; }
         #endregion
 
         public SettingsViewModel()
         {
             CloseCommand = new RelayCommand(Close);
             OpenCommand = new RelayCommand(Open);
+            LogoutCommand = new RelayCommand(Logout);
+            ClearuserDataCommand = new RelayCommand(ClearUserData);
 
             //TODO : remove this when the real run envirment
-            Name = new TextEntryViewModel { Label = "Name", OriginalText = "Luke Malpass" };
-            UserName = new TextEntryViewModel { Label = "UserName", OriginalText = "Luke" };
-            Password = new TextEntryViewModel { Label = "Password", OriginalText = "********" };
-            Email = new TextEntryViewModel { Label = "Email", OriginalText = "test@email.com" };
+
+            LogoutButtonText = "Logout";
+        }
+
+        public void Logout()
+        {
+            ClearUserData();
+            //Go to login page
+            IoC.Application.GoToPage(ApplicationPage.LoginPage);
         }
 
         public void Close()
@@ -46,6 +62,14 @@ namespace Fasetto.Word.Core
         public void Open()
         {
             IoC.Application.SettingsMenuVisible = true;
+        }
+
+        public void ClearUserData()
+        {
+            Name = null;
+            UserName = null;
+            Password = null;
+            Email = null;
         }
 
     }

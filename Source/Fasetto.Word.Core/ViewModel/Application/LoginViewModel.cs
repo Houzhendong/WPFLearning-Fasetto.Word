@@ -70,6 +70,11 @@ namespace Fasetto.Word.Core
              {
                  await Task.Delay(500);
 
+                 IoC.Settings.Name = new TextEntryViewModel { Label = "Name", OriginalText = $"Luke Malpass {DateTime.Now.ToLocalTime()}" };
+                 IoC.Settings.UserName = new TextEntryViewModel { Label = "UserName", OriginalText = "Luke" };
+                 IoC.Settings.Password = new PasswordEntryViewModel { Label = "Password", FakePassword = "********" };
+                 IoC.Settings.Email = new TextEntryViewModel { Label = "Email", OriginalText = "test@email.com" };
+
                  IoC.Get<ApplicationViewModel>().GoToPage(ApplicationPage.Chat);
                  //var email = this.Email;
                  //var pass = (paramter as IHavePassword).SecurePassword.Unsecure();

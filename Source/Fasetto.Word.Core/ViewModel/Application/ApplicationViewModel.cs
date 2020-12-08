@@ -20,6 +20,8 @@
         /// <param name="page"></param>
         public void GoToPage(ApplicationPage page)
         {
+            SettingsMenuVisible = false;
+
             CurrentPage = page;
 
             SideMenuVisiable = page == ApplicationPage.Chat;

@@ -67,7 +67,7 @@
             <Trigger Property="IsMouseOver"
                      Value="True">
                 <Setter Property="Background"
-                        Value="{StaticResource BackgroundLightBrush}" />
+                        Value="{StaticResource ForegroundDarkBrush}" />
             </Trigger>
         </Style.Triggers>
 
@@ -240,10 +240,10 @@
                             SnapsToDevicePixels="True">
                         <Grid HorizontalAlignment="Center"
                               VerticalAlignment="Center">
-                            <Viewbox>
-                                <Path Data="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Content}"
-                                      Fill="{TemplateBinding Foreground}" />
-                            </Viewbox>
+                            <Path Data="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Content}"
+                                  Fill="{TemplateBinding Foreground}"
+                                  Stretch="UniformToFill"
+                                  Margin="5" />
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
