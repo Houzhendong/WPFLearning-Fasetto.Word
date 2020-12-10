@@ -9,6 +9,11 @@ namespace Fasetto.Word
     public class BasePage : UserControl 
     { 
         /// <summary>
+        /// the view model associated with this page
+        /// </summary>
+        private object viewModel;
+
+        /// <summary>
         /// the animation the play the page is first loaded
         /// </summary>
         public PageAnimation PageLoadAnimation { get; set; } = PageAnimation.SlideAndFadeInFromRight;
@@ -27,6 +32,25 @@ namespace Fasetto.Word
         /// a flag to indicate if theis page should animate out on load
         /// </summary>
         public bool ShouldAnimateOut { get; set; }
+
+        /// <summary>
+        /// the view model associated with this page
+        /// </summary>
+        public object ViewModelObject
+        { 
+            get 
+            {
+                return this.viewModel; 
+            }
+            set
+            {
+                if (viewModel == value)
+                    return;
+                this.viewModel = value;
+
+                this.DataContext = viewModel;
+            }
+        }
 
         public BasePage()
         {
@@ -84,38 +108,35 @@ namespace Fasetto.Word
     {
         #region Private Member
 
-        /// <summary>
-        /// the view model associated with this page
-        /// </summary>
-        private VM viewModel;
-
         #endregion
-        #region Public Properties
-                /// <summary>
-        /// the view model associated with this page
-        /// </summary>
-        public VM ViewModel
-        { 
-            get 
-            {
-                return this.viewModel; 
-            }
-            set
-            {
-                if (viewModel == value)
-                    return;
-                this.viewModel = value;
 
-                this.DataContext = viewModel;
-            }
+        #region Public Properties
+
+        public VM ViewModel
+        {
+            get => (VM)ViewModelObject;
+            set => ViewModelObject = value;
         }
 
         #endregion
 
         #region Constructor
+
         public BasePage() : base()
         {
-            this.ViewModel= new VM();
+            ViewModel = IoC.Get<VM>();
+        }
+
+        public BasePage(VM viewModel) : base()
+        {
+            if (viewModel != null)
+            {
+                ViewModel = viewModel;
+            }
+            else
+            {
+                ViewModel = IoC.Get<VM>();
+            }
         }
         #endregion
     }

@@ -13,6 +13,11 @@ namespace Fasetto.Word
             InitializeComponent();
         }
 
+        public LoginPage(LoginViewModel viewModel) : base(viewModel)
+        {
+            InitializeComponent();
+        }
+
         /// <summary>
         /// the secure password for this login page
         /// </summary>

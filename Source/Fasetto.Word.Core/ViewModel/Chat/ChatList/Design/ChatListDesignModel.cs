@@ -38,14 +38,14 @@ namespace Fasetto.Word.Core
                 {
                     Name = "Luke",
                     Initials = "LM",
-                    Message = "This chat app is awesome! I bet it will be fast too",
+                    Message = "Third View Model",
                     ProfilePictureRGB = "3099c5",
                 },
                 new ChatListItemViewModel
                 {
                     Name = "Luke",
                     Initials = "LM",
-                    Message = "This chat app is awesome! I bet it will be fast too",
+                    Message = "Forth View Model",
                     ProfilePictureRGB = "3099c5",
                     NewContentAvailable = true,
                 },
@@ -53,21 +53,21 @@ namespace Fasetto.Word.Core
                 {
                     Name = "Luke",
                     Initials = "LM",
-                    Message = "This chat app is awesome! I bet it will be fast too",
+                    Message = "Fifth View Model",
                     ProfilePictureRGB = "3099c5",
                 },
                 new ChatListItemViewModel
                 {
                     Name = "Luke",
                     Initials = "LM",
-                    Message = "This chat app is awesome! I bet it will be fast too",
+                    Message = "Sixth View Model",
                     ProfilePictureRGB = "3099c5",
                 },
                 new ChatListItemViewModel
                 {
                     Name = "Parnell",
                     Initials = "PL",
-                    Message = "The new server is up, go to 192.168.123.3",
+                    Message = "Seventh View Model",
                     ProfilePictureRGB = "00d405",
                     IsSelected = true,
                 },

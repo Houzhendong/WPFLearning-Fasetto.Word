@@ -1,5 +1,6 @@
-﻿
-using System.Drawing;
+﻿using System;
+using System.Collections.Generic;
+using System.Windows.Input;
 
 namespace Fasetto.Word.Core
 {
@@ -8,6 +9,7 @@ namespace Fasetto.Word.Core
     /// </summary>
     public class ChatListItemViewModel : BaseViewModel
     {
+        #region Public Properties
         /// <summary>
         /// the display name of this chat list
         /// </summary>
@@ -34,5 +36,93 @@ namespace Fasetto.Word.Core
         /// true if this item is Selected
         /// </summary>
         public bool IsSelected { get; set; }
+        #endregion
+
+        #region Public Commands
+
+        /// <summary>
+        /// Opens the current message thread
+        /// </summary>
+        public ICommand OpenMessageCommand { get; set; }
+
+        #endregion
+
+        public ChatListItemViewModel()
+        {
+            OpenMessageCommand = new RelayCommand(OpenMessage);
+        }
+
+        public void OpenMessage()
+        {
+            if (Name.Equals("Jesse"))
+            {
+                IoC.Application.GoToPage(ApplicationPage.LoginPage, new LoginViewModel
+                {
+                   Email = "Jesse@google.com" 
+                });
+                return;
+            }
+
+            IoC.Application.GoToPage(ApplicationPage.Chat, new ChatMessageListViewModel
+            {
+                Items = new List<ChatMessageListItemViewModel>
+                {
+                    new ChatMessageListItemViewModel
+                    {
+                        Message =Message,
+                        Initials = Initials,
+                        MessageSendTime = DateTime.UtcNow,
+                        ProfilePictureRGB = "FF00FF",
+                        SenderName ="Luke",
+                        SendByMe = true,
+                    },
+                    new ChatMessageListItemViewModel
+                    {
+                        Message = "A received message",
+                        Initials = Initials,
+                        MessageSendTime = DateTime.UtcNow,
+                        ProfilePictureRGB = "FF0000",
+                        SenderName ="Parnell",
+                        SendByMe = false,
+                    },
+                    new ChatMessageListItemViewModel
+                    {
+                        Message =Message,
+                        Initials = Initials,
+                        MessageSendTime = DateTime.UtcNow,
+                        ProfilePictureRGB = "FF00FF",
+                        SenderName ="Luke",
+                        SendByMe = true,
+                    },
+                    new ChatMessageListItemViewModel
+                    {
+                        Message = "A received message",
+                        Initials = Initials,
+                        MessageSendTime = DateTime.UtcNow,
+                        ProfilePictureRGB = "FF0000",
+                        SenderName ="Parnell",
+                        SendByMe = false,
+                    },
+                    new ChatMessageListItemViewModel
+                    {
+                        Message =Message,
+                        Initials = Initials,
+                        MessageSendTime = DateTime.UtcNow,
+                        ProfilePictureRGB = "FF00FF",
+                        SenderName ="Luke",
+                        SendByMe = true,
+                    },
+                    new ChatMessageListItemViewModel
+                    {
+                        Message = "A received message",
+                        Initials = Initials,
+                        MessageSendTime = DateTime.UtcNow,
+                        ProfilePictureRGB = "FF0000",
+                        SenderName ="Parnell",
+                        SendByMe = false,
+                    },
+                }
+            });
+        }
     }
 }

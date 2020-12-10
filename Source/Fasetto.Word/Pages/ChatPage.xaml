@@ -56,7 +56,8 @@
 
         <!--chat List-->
         <local:ChatMessageListControl Grid.Row="1"
-                                      DataContext="{x:Static core:ChatMessageListDesignModel.Instance}" />
+                                      DataContext="{Binding}" />
+
 
         <local:BubbleContent Grid.Row="1"
                              HorizontalAlignment="Left"

@@ -40,6 +40,7 @@
                         <!--Email-->
                         <TextBox Style="{StaticResource TextBoxPlaceholder}"
                                  local:IsFocusedProperty.Value="True"
+                                 Text="{Binding Email}"
                                  Tag="Email" />
 
                         <!--Password-->
