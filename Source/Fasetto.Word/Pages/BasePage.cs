@@ -46,9 +46,11 @@ namespace Fasetto.Word
             {
                 if (viewModel == value)
                     return;
-                this.viewModel = value;
+                viewModel = value;
 
-                this.DataContext = viewModel;
+                OnViewModelChanged();
+
+                DataContext = viewModel;
             }
         }
 
@@ -101,6 +103,8 @@ namespace Fasetto.Word
         }
 
         #endregion
+
+        protected virtual void OnViewModelChanged() { }
     }
 
     public class BasePage<VM> : BasePage

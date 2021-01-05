@@ -56,15 +56,17 @@
 
         <!--chat List-->
         <local:ChatMessageListControl Grid.Row="1"
-                                      DataContext="{Binding}" />
+                                      DataContext="{Binding}"
+                                      x:Name="ChatMessageList" />
 
 
-        <local:BubbleContent Grid.Row="1"
-                             HorizontalAlignment="Left"
-                             Panel.ZIndex="2"
-                             DataContext="{Binding AttachmentMenu}"
-                             VerticalAlignment="Bottom"
-                             local:AnimateSlideInFromBottomProperty.Value="{Binding ViewModel.AttachmentMenuVisible,RelativeSource={RelativeSource AncestorType=local:ChatPage}}" />
+        <Border Grid.Row="1"
+                HorizontalAlignment="Left"
+                Panel.ZIndex="2"
+                VerticalAlignment="Bottom"
+                local:AnimateSlideInFromBottomProperty.Value="{Binding AttachmentMenuVisible}">
+            <local:BubbleContent DataContext="{Binding AttachmentMenu}" />
+        </Border>
 
         <Grid Grid.Row="2"
               MinHeight="50"

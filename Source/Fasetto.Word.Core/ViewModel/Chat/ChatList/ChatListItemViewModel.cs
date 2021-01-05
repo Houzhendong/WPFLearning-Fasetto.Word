@@ -58,13 +58,26 @@ namespace Fasetto.Word.Core
             {
                 IoC.Application.GoToPage(ApplicationPage.LoginPage, new LoginViewModel
                 {
-                   Email = "Jesse@google.com" 
+                    Email = "Jesse@google.com"
                 });
                 return;
             }
 
             IoC.Application.GoToPage(ApplicationPage.Chat, new ChatMessageListViewModel
             {
+                AttachmentMenu = new ChatAttachmentPopupMenuViewModel
+                {
+                    Content = new MenuViewModel
+                    {
+                        Items = new List<MenuItemViewModel>(new[]
+                        {
+                            new MenuItemViewModel { Text = "Attach a file...", Type = MenuItemType.Header },
+                            new MenuItemViewModel { Text = "From Computer", Icon = IconType.File },
+                            new MenuItemViewModel { Text = "From Pictures", Icon = IconType.Picture },
+                        })
+                    }
+                },
+
                 Items = new List<ChatMessageListItemViewModel>
                 {
                     new ChatMessageListItemViewModel
