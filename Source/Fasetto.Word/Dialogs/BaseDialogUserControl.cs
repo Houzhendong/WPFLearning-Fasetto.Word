@@ -72,6 +72,9 @@ namespace Fasetto.Word
 
                     DataContext = viewModel;
 
+                    dialogWindow.Owner = Application.Current.MainWindow;
+                    dialogWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+
                     dialogWindow.ShowDialog();
                 }
                 finally

@@ -78,7 +78,7 @@ namespace Fasetto.Word.Core
                     }
                 },
 
-                Items = new List<ChatMessageListItemViewModel>
+                Items = new System.Collections.ObjectModel.ObservableCollection<ChatMessageListItemViewModel>
                 {
                     new ChatMessageListItemViewModel
                     {

@@ -7,7 +7,7 @@ namespace Fasetto.Word
     /// </summary>
     /// <typeparam name="Parent"></typeparam>
     public abstract class AnimateBaseProperty<Parent> : BaseAttachedProperties<Parent, bool>
-        where Parent: BaseAttachedProperties<Parent,bool>, new()
+        where Parent : BaseAttachedProperties<Parent, bool>, new()
     {
 
         public bool FirstLoad { get; set; } = true;
@@ -17,7 +17,7 @@ namespace Fasetto.Word
             //get the framework element
             if (!(sender is FrameworkElement element))
                 return;
-            
+
             //don't fire if the value doesn't change
             if (sender.GetValue(ValueProperty) == value && !FirstLoad)
                 return;
@@ -47,8 +47,8 @@ namespace Fasetto.Word
         /// <param name="element"></param>
         /// <param name="value"></param>
         protected virtual void DoAnimation(FrameworkElement element, bool value)
-        { 
-            
+        {
+
         }
     }
 
@@ -71,6 +71,14 @@ namespace Fasetto.Word
                 await element.SlideAndFadeInFromBottom(FirstLoad ? 0 : 0.2f, keepMargin: false);
             else
                 await element.SlideAndFadeOutToBottom(FirstLoad ? 0 : 0.2f, keepMargin: false);
+        }
+    }
+
+    public class AnimateSlideInFromBottomOnLoadProperty : AnimateBaseProperty<AnimateSlideInFromBottomOnLoadProperty>
+    {
+        protected override async void DoAnimation(FrameworkElement element, bool value)
+        {
+            await element.SlideAndFadeInFromBottom(FirstLoad ? 0 : 0.2f, keepMargin: false);
         }
     }
 

@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Dynamic;
 using System.Windows.Input;
 
@@ -28,13 +30,18 @@ namespace Fasetto.Word.Core
         /// <summary>
         /// the display name of this chat list
         /// </summary>
-        public List<ChatMessageListItemViewModel> Items { get; set; }
+        public ObservableCollection<ChatMessageListItemViewModel> Items { get; set; }
 
         public bool AttachmentMenuVisible{ get; set; }
 
         public bool AnyPopupVisible => AttachmentMenuVisible;
 
         public ChatAttachmentPopupMenuViewModel AttachmentMenu { get; set; }
+
+        /// <summary>
+        /// The message text for the current message being written
+        /// </summary>
+        public string PendingMessageText { get; set; }
 
         public ChatMessageListViewModel()
         {
@@ -62,12 +69,18 @@ namespace Fasetto.Word.Core
 
         public void Send()
         {
-            IoC.UI.ShowMessage(new MessageBoxDialogViewModel
+            if (string.IsNullOrEmpty(PendingMessageText))
+                return;
+
+            Items.Add(new ChatMessageListItemViewModel
             {
-                Title = "Send Message",
-                Message = "Thank you for writing a nice message",
-                OKText = "OK"
+                Initials = "LM",
+                Message = PendingMessageText,
+                MessageSendTime = DateTime.UtcNow,
+                SendByMe = true
             });
+
+            PendingMessageText = string.Empty;
         }
     }
 }

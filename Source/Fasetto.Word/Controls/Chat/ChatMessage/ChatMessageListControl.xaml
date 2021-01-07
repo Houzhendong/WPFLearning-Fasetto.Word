@@ -12,6 +12,7 @@
           VerticalAlignment="Bottom">
         <ScrollViewer VerticalScrollBarVisibility="Auto"
                       local:ScrollToBottomOnLoadProperty.Value="True"
+                      local:AutoScrollToBottomProperty.Value="True"
                       Style="{DynamicResource ScrollViewerStyle1}">
             <ItemsControl ItemsSource="{Binding Items}">
                 <ItemsControl.ItemTemplate>
