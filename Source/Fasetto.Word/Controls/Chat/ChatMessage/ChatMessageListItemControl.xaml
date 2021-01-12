@@ -7,8 +7,7 @@
              xmlns:local="clr-namespace:Fasetto.Word"
              mc:Ignorable="d"
              d:DesignWidth="300">
-    <Border 
-            Padding="5"
+    <Border Padding="5"
             d:DataContext="{x:Static core:ChatMessageListItemDesignModel.Instance}">
         <Grid>
 
@@ -54,48 +53,72 @@
                         </BeginStoryboard>
                     </EventTrigger>
                 </Grid.Triggers>
+
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
+                <Grid>
 
-                <!--Speech bubble rectangle-->
-                <Border CornerRadius="10"
-                        Grid.Column="1"
-                        Padding="15"
-                        Background="{Binding SendByMe,Converter={local:SentByMeToBackgroundConverter}}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
 
-                    <!--Message text-->
-                    <TextBlock VerticalAlignment="Center"
-                               TextWrapping="Wrap"
-                               FontSize="{StaticResource FontSizeRegular}"
-                               Text="{Binding Message}"
-                               Foreground="{StaticResource WordDarkBlueBrush}" />
+                    <!--Image attachement-->
+                    <Border CornerRadius="10"
+                            Margin="0,0,0,15">
+                        <Image DataContext="{Binding ImageAttchment}"
+                               Source="{Binding LocalFilePath}" 
+                               local:ClipFromBorderProperty.Value="True"
+                               MaxWidth="600"/>
+                    </Border>
+                    
+                    <!--Chat Message Text Bubble-->
+                    <Grid Grid.Row="1"
+                          Visibility="{Binding HasMessage,Converter={local:BoolToVisibilityGoneConverter}}">
 
-                </Border>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
 
-                <!--Send by guest arrow-->
-                <Path StrokeThickness="0"
-                      Margin="8 10 -1 0"
-                      Panel.ZIndex="1"
-                      Data="M 0,0 L -8,8 L 0,16"
-                      Visibility="{Binding SendByMe,Converter={local:BoolToVisibilityConverter}}"
-                      Fill="{Binding SendByMe,Converter={local:SentByMeToBackgroundConverter}}" />
+                        <!--Speech bubble rectangle-->
+                        <Border CornerRadius="10"
+                                Grid.Column="1"
+                                Padding="15"
+                                Background="{Binding SendByMe,Converter={local:SentByMeToBackgroundConverter}}">
 
-                <!--Send by me arrow-->
-                <Path StrokeThickness="0"
-                      Margin="-1 10 8 0"
-                      Grid.Column="2"
-                      Panel.ZIndex="1"
-                      Data="M 0,0 L 8,8 L 0,16"
-                      Visibility="{Binding SendByMe,Converter={local:BoolToVisibilityConverter},ConverterParameter=false}"
-                      Fill="{Binding SendByMe,Converter={local:SentByMeToBackgroundConverter}}" />
+                            <!--Message text-->
+                            <TextBlock VerticalAlignment="Center"
+                                       TextWrapping="Wrap"
+                                       FontSize="{StaticResource FontSizeRegular}"
+                                       Text="{Binding Message}"
+                                       Foreground="{StaticResource WordDarkBlueBrush}" />
+
+                        </Border>
+
+                        <!--Send by guest arrow-->
+                        <Path StrokeThickness="0"
+                              Margin="8 10 -1 0"
+                              Panel.ZIndex="1"
+                              Data="M 0,0 L -8,8 L 0,16"
+                              Visibility="{Binding SendByMe,Converter={local:BoolToVisibilityConverter}}"
+                              Fill="{Binding SendByMe,Converter={local:SentByMeToBackgroundConverter}}" />
+
+                        <!--Send by me arrow-->
+                        <Path StrokeThickness="0"
+                              Margin="-1 10 8 0"
+                              Grid.Column="2"
+                              Panel.ZIndex="1"
+                              Data="M 0,0 L 8,8 L 0,16"
+                              Visibility="{Binding SendByMe,Converter={local:BoolToVisibilityConverter},ConverterParameter=false}"
+                              Fill="{Binding SendByMe,Converter={local:SentByMeToBackgroundConverter}}" />
+                    </Grid>
+
+                </Grid>
 
                 <!--time container-->
                 <StackPanel Grid.Row="1"

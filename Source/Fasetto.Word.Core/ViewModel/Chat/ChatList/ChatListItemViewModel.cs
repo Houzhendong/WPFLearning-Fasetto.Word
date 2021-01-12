@@ -129,6 +129,10 @@ namespace Fasetto.Word.Core
                     {
                         Message = "A received message",
                         Initials = Initials,
+                        ImageAttchment = new ChatMessageListItemImageAttachmentViewModel
+                        {
+                            ThumbnailUrl = "http://anywhere",
+                        },
                         MessageSendTime = DateTime.UtcNow,
                         ProfilePictureRGB = "FF0000",
                         SenderName ="Parnell",

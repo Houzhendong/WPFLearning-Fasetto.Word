@@ -55,5 +55,18 @@ namespace Fasetto.Word.Core
         /// True if this message has been read
         /// </summary>
         public bool MessageRead => MessageReadTime > DateTimeOffset.MinValue;
+
+        /// <summary>
+        /// A flag indicating if we have a message or not
+        /// </summary>
+        public ChatMessageListItemImageAttachmentViewModel ImageAttchment { get; set; }
+
+        public bool HasMessage => Message != null;
+
+        /// <summary>
+        /// A flag indicating if we have an imge attached to this message
+        /// </summary>
+        public bool HasImageAttachment => ImageAttchment != null;
+
     }
 }
