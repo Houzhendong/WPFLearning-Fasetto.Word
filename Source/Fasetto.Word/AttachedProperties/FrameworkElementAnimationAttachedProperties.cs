@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 
 namespace Fasetto.Word
 {
@@ -49,6 +50,29 @@ namespace Fasetto.Word
         protected virtual void DoAnimation(FrameworkElement element, bool value)
         {
 
+        }
+    }
+
+    public class FadeInImageOnLoadProperty : AnimateBaseProperty<FadeInImageOnLoadProperty>
+    {
+        public override void OnValueUpdated(DependencyObject sender, object value)
+        {
+            if (!(sender is Image image))
+                return;
+
+            if((bool)value)
+            {
+                image.TargetUpdated += Image_TargetUpdated;
+            }
+            else
+            {
+                image.TargetUpdated -= Image_TargetUpdated;
+            }
+        }
+
+        private async void Image_TargetUpdated(object sender, System.Windows.Data.DataTransferEventArgs e)
+        {
+            await (sender as Image).FadeIn(keepMargin:false);
         }
     }
 

@@ -2,6 +2,7 @@
 using System;
 using System.Drawing;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace Fasetto.Word.Core
 {
@@ -53,5 +54,7 @@ namespace Fasetto.Word.Core
         /// The local file path on this machine to the downloaded thumbnail 
         /// </summary>
         public string LocalFilePath { get; set; }
+
+        public bool ImgeLoaded => LocalFilePath == null;
     }
 }
