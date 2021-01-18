@@ -87,6 +87,17 @@ namespace Fasetto.Word
         }
     }
 
+    public class AnimateSlideInFromRightProperty : AnimateBaseProperty<AnimateSlideInFromRightProperty>
+    {
+        protected override async void DoAnimation(FrameworkElement element, bool value)
+        {
+            if (value)
+                await element.SlideAndFadeInFromRight(FirstLoad ? 0 : 0.3f, keepMargin: true);
+            else
+                await element.SlideAndFadeOutToRight(FirstLoad ? 0 : 0.3f, keepMargin: true);
+        }
+    }
+
     public class AnimateSlideInFromBottomProperty : AnimateBaseProperty<AnimateSlideInFromBottomProperty>
     {
         protected override async void DoAnimation(FrameworkElement element, bool value)

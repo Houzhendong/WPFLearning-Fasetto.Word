@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Dynamic;
+using System.Linq;
+using System.Security;
 using System.Windows.Input;
 
 namespace Fasetto.Word.Core
@@ -30,7 +33,45 @@ namespace Fasetto.Word.Core
         /// <summary>
         /// the display name of this chat list
         /// </summary>
-        public ObservableCollection<ChatMessageListItemViewModel> Items { get; set; }
+        public ObservableCollection<ChatMessageListItemViewModel> Items
+        {
+            get => items;
+            set
+            {
+                if (items == value)
+                    return;
+
+                items = value;
+                FilteredItems = new ObservableCollection<ChatMessageListItemViewModel>(items);
+            }
+        }
+
+        /// <summary>
+        /// The chat thred items for the list that inclode any search filtering 
+        /// </summary>
+        public ObservableCollection<ChatMessageListItemViewModel> FilteredItems { get; set; } 
+
+        /// <summary>
+        /// The title of this chat list
+        /// </summary>
+        public string DisplayTitle { get; set; }
+
+        public string SearchText
+        {
+            get => searchText;
+            set 
+            {
+                if (searchText == value)
+                    return;
+
+                searchText = value;
+
+                if(string.IsNullOrEmpty(searchText))
+                {
+                    Search();
+                }
+            }
+        }
 
         public bool AttachmentMenuVisible{ get; set; }
 
@@ -43,6 +84,40 @@ namespace Fasetto.Word.Core
         /// </summary>
         public string PendingMessageText { get; set; }
 
+        /// <summary>
+        /// The last search text in this list
+        /// </summary>
+        protected string lastSearchText;
+
+        /// <summary>
+        /// The text to search for in the search command
+        /// </summary>
+        protected string searchText;
+
+        protected ObservableCollection<ChatMessageListItemViewModel> items;
+
+        protected bool searchIsOpen;
+
+        public bool SearchIsOpen
+        {
+            get => searchIsOpen;
+            set
+            {
+                if (searchIsOpen == value)
+                    return;
+
+                searchIsOpen = value;
+
+                if (!searchIsOpen)
+                    SearchText = string.Empty;
+            }
+        }
+
+        public ICommand SearchCommand { get; set; }
+        public ICommand OpenSearchCommand { get; set; }
+        public ICommand CloseSearchCommand { get; set; }
+        public ICommand ClearSearchCommand { get; set; }
+
         public ChatMessageListViewModel()
         {
             AttachmentButtonCommand = new RelayCommand(AttachmentButton);
@@ -52,6 +127,10 @@ namespace Fasetto.Word.Core
             PopupClickawayCommand = new RelayCommand(PopupClickaway);
 
             SendCommand = new RelayCommand(Send);
+            SearchCommand = new RelayCommand(Search);
+            OpenSearchCommand = new RelayCommand(OpenSearch);
+            CloseSearchCommand = new RelayCommand(CloseSearch);
+            ClearSearchCommand = new RelayCommand(ClearSearch);
         }
 
         /// <summary>
@@ -72,15 +151,63 @@ namespace Fasetto.Word.Core
             if (string.IsNullOrEmpty(PendingMessageText))
                 return;
 
-            Items.Add(new ChatMessageListItemViewModel
+            if (Items == null)
+                Items = new ObservableCollection<ChatMessageListItemViewModel>();
+
+            if (FilteredItems == null)
+                FilteredItems = new ObservableCollection<ChatMessageListItemViewModel>();
+
+            var message = new ChatMessageListItemViewModel
             {
                 Initials = "LM",
                 Message = PendingMessageText,
                 MessageSendTime = DateTime.UtcNow,
                 SendByMe = true
-            });
+            };
+
+            Items.Add(message);
+            FilteredItems.Add(message);
 
             PendingMessageText = string.Empty;
         }
+
+        public void Search()
+        {
+            if((string.IsNullOrEmpty(lastSearchText) && string.IsNullOrEmpty(searchText)) ||
+                string.Equals(lastSearchText,searchText))
+            { 
+                return; 
+            }
+
+            if (string.IsNullOrEmpty(SearchText) || Items == null || Items.Count <= 0)
+            {
+                FilteredItems = new ObservableCollection<ChatMessageListItemViewModel>(items);
+
+                lastSearchText = SearchText;
+
+                return;
+            }
+
+            FilteredItems = new ObservableCollection<ChatMessageListItemViewModel>(items.Where(item => item.Message.ToLower().Contains(SearchText)));
+
+            lastSearchText = SearchText;
+        }
+        public void CloseSearch() => SearchIsOpen = false;
+
+        public void OpenSearch() => SearchIsOpen = true;
+
+        public void ClearSearch()
+        {
+            if (!string.IsNullOrEmpty(SearchText))
+            {
+                SearchText = string.Empty;
+            }
+            else
+            {
+                SearchIsOpen = false;
+            }
+        }
+
+
     }
 }

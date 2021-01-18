@@ -65,6 +65,8 @@ namespace Fasetto.Word.Core
 
             IoC.Application.GoToPage(ApplicationPage.Chat, new ChatMessageListViewModel
             {
+                DisplayTitle = "Parnell, Me",
+
                 AttachmentMenu = new ChatAttachmentPopupMenuViewModel
                 {
                     Content = new MenuViewModel

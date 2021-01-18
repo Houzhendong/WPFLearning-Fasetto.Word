@@ -16,7 +16,7 @@ namespace Fasetto.Word
             if (!(sender is Control control))
                 return;
 
-            control.Loaded += (s, se) => control.Focus();
+           control.Focus();
         }
     }
 
