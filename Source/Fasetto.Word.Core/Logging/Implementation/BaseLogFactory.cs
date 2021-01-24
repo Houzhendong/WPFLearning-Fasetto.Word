@@ -24,9 +24,17 @@ namespace Fasetto.Word.Core
         /// </summary>
         public bool IncludeLogOriginDetails { get; set; } = true;
 
-        public BaseLogFactory()
+        public BaseLogFactory(ILogger[] loggers = null)
         {
             AddLogger(new ConsoleLogger());
+
+            if(loggers != null)
+            {
+                foreach (var logger in loggers)
+                {
+                    AddLogger(logger);
+                }
+            }
         }
 
         public void AddLogger(ILogger logger)

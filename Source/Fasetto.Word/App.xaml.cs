@@ -21,12 +21,12 @@ namespace Fasetto.Word
             //setup the main application
             ApplicationSetup();
 
-            IoC.Logger.Log("This is Debug", level:LogLevel.Debug);
-            IoC.Logger.Log("This is Error", level:LogLevel.Error);
-            IoC.Logger.Log("This is Informative", level:LogLevel.Informative);
-            IoC.Logger.Log("This is Success", level:LogLevel.Success);
-            IoC.Logger.Log("This is Verbose", level:LogLevel.Verbose);
-            IoC.Logger.Log("This is Waring", level:LogLevel.Waring);
+            IoC.Task.Run(() =>
+            {
+                throw new ArgumentNullException();
+            });
+
+            IoC.File.WriteAllTextToFileAsync("some text", "test.txt");
 
             //show the main window
             Current.MainWindow = new MainWindow();
@@ -37,9 +37,16 @@ namespace Fasetto.Word
         {
             IoC.Setup();
 
-            IoC.Kernel.Bind<IUIManager>().ToConstant(new UIManager());
+            IoC.Kernel.Bind<ILogFactory>().ToConstant(new BaseLogFactory(new[]
+            {
+                new FileLogger("log.txt"),
+            }));
 
-            IoC.Kernel.Bind<ILogFactory>().ToConstant(new BaseLogFactory());
+            IoC.Kernel.Bind<ITaskManager>().ToConstant(new TaskManager());
+
+            IoC.Kernel.Bind<IFileManager>().ToConstant(new FileManager());
+
+            IoC.Kernel.Bind<IUIManager>().ToConstant(new UIManager());
         }
     }
 }
